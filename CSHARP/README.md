@@ -1,4 +1,5 @@
 # OENIK_PROG3_2019_2_J4G2NY
+# J4G2NY_Webshop
 #
 # USERS (ID, First_Name, Last_Name, Location_ID, Email, Phone_Number, Credit_Card_Number,
 #	Birth_Date, Registration_Date)
@@ -20,23 +21,3 @@
 #  a legtöbbet.
 # -Legyen lehetőségünk egy Java webes végponttól részesedési mutatót kérni (a webshop részesedése):
 #  GET-ben adjuk át a Java végpontnak az árú kategóriáját és árát;  
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
