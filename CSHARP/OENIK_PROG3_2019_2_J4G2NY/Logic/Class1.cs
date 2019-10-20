@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Webshop.Logic
+namespace Logic
 {
-
+    namespace Tests
+    {
+        public class Class
+        {
+            
+        }
+    }
     public class Class1
     {
         
