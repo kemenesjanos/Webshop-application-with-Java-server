@@ -4,12 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Program
+namespace Logic
 {
-    class Program
+    namespace Tests
     {
-        static void Main(string[] args)
+        public class Class
         {
+            
         }
+    }
+    public class Class1
+    {
+        
     }
 }
