@@ -9,6 +9,6 @@ namespace Webshop.Logic
 
     public class Class1
     {
-        
+
     }
 }
