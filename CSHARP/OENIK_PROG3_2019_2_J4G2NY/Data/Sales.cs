@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data
+namespace Webshop.Data
 {
     using System;
     using System.Collections.Generic;
@@ -15,8 +15,8 @@ namespace Data
     public partial class Sales
     {
         public decimal ID { get; set; }
-        public string Seller_Email { get; set; }
-        public string Buyer_Email { get; set; }
+        public Nullable<decimal> Seller_ID { get; set; }
+        public Nullable<decimal> Buyer_ID { get; set; }
         public Nullable<System.DateTime> Transaction_Date { get; set; }
         public string Product_Name { get; set; }
         public Nullable<decimal> Price { get; set; }

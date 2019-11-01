@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +10,16 @@ using System.Threading.Tasks;
 
 namespace Program
 {
-    class Program
+    /// <summary>
+    /// The MainProgram.
+    /// </summary>
+    internal class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Main.
+        /// </summary>
+        /// <param name="args">args.</param>
+        private static void Main(string[] args)
         {
             string v;
             do
@@ -23,16 +34,22 @@ namespace Program
                 Console.WriteLine("X: kilépni");
                 v = Console.ReadLine();
                 Console.Clear();
-                if (v == "l" || v == "h" || v == "t" || v == "m") 
+                if (v == "l" || v == "h" || v == "t" || v == "m")
                 {
                     Console.WriteLine("Melyik táblával?\n");
                     Console.WriteLine("U: Users \nS: Sales \nL: Loc");
                     string t = Console.ReadLine();
                     Console.Clear();
                 }
-                if (v != "x") { Console.WriteLine("Ez még nincs kész"); }
+
+                if (v != "x")
+                {
+                    Console.WriteLine("Ez még nincs kész");
+                }
+
                 Console.ReadKey();
-            } while (v!="x");
+            }
+            while (v != "x");
         }
     }
 }

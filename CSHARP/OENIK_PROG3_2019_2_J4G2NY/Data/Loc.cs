@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data
+namespace Webshop.Data
 {
     using System;
     using System.Collections.Generic;

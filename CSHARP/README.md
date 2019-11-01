@@ -1,7 +1,7 @@
 # OENIK_PROG3_2019_2_J4G2NY
 # J4G2NY_Webshop
 #
-# USERS (FullName, Location_ID, Email, Phone_Number, Birth_Date, Registration_Date)
+# USERS (ID, FullName, Location_ID, Email, Phone_Number, Birth_Date, Registration_Date)
 # SALES (ID, Seller_Email, Buyer_Email, Transaction_Date, Product_Name, Price, Category,
 #	Shipping_Cost)
 # Loc (ID, Country, Street, House_Number, Zip_Code)

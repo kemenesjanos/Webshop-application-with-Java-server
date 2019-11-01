@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WebshopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Loc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="20" />
+          <Property Name="Street" Type="varchar" MaxLength="40" />
+          <Property Name="House_Number" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="Zip_Code" Type="numeric" Precision="4" Scale="0" />
+        </EntityType>
+        <EntityType Name="Sales">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Seller_ID" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="Buyer_ID" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="Transaction_Date" Type="date" />
+          <Property Name="Product_Name" Type="varchar" MaxLength="30" />
+          <Property Name="Price" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="Category" Type="varchar" MaxLength="15" />
+          <Property Name="Shipping_Cost" Type="numeric" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Location_ID" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Phone_Number" Type="numeric" Precision="15" Scale="0" />
+          <Property Name="Birth_Date" Type="date" />
+          <Property Name="Registration_Date" Type="date" />
+        </EntityType>
+        <Association Name="buyer_fk">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Buyer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="location_fk">
+          <End Role="Loc" Type="Self.Loc" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="seller_fk">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Seller_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebshopDBModelStoreContainer">
+          <EntitySet Name="Loc" EntityType="Self.Loc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="buyer_fk" Association="Self.buyer_fk">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="location_fk" Association="Self.location_fk">
+            <End Role="Loc" EntitySet="Loc" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="seller_fk" Association="Self.seller_fk">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebshopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Loc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="House_Number" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="Zip_Code" Type="Decimal" Precision="4" Scale="0" />
+          <NavigationProperty Name="Users" Relationship="Self.location_fk" FromRole="Loc" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Sales">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Seller_ID" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Buyer_ID" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Transaction_Date" Type="DateTime" Precision="0" />
+          <Property Name="Product_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Category" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Shipping_Cost" Type="Decimal" Precision="10" Scale="0" />
+          <NavigationProperty Name="Users" Relationship="Self.buyer_fk" FromRole="Sales" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.seller_fk" FromRole="Sales" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location_ID" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_Number" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="Birth_Date" Type="DateTime" Precision="0" />
+          <Property Name="Registration_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Loc" Relationship="Self.location_fk" FromRole="Users" ToRole="Loc" />
+          <NavigationProperty Name="Sales" Relationship="Self.buyer_fk" FromRole="Users" ToRole="Sales" />
+          <NavigationProperty Name="Sales1" Relationship="Self.seller_fk" FromRole="Users" ToRole="Sales" />
+        </EntityType>
+        <Association Name="location_fk">
+          <End Role="Loc" Type="Self.Loc" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="buyer_fk">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Buyer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="seller_fk">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Seller_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebshopDBEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Loc" EntityType="Self.Loc" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="location_fk" Association="Self.location_fk">
+            <End Role="Loc" EntitySet="Loc" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="buyer_fk" Association="Self.buyer_fk">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="seller_fk" Association="Self.seller_fk">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebshopDBModelStoreContainer" CdmEntityContainer="WebshopDBEntities2">
+          <EntitySetMapping Name="Loc">
+            <EntityTypeMapping TypeName="WebshopDBModel.Loc">
+              <MappingFragment StoreEntitySet="Loc">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="House_Number" ColumnName="House_Number" />
+                <ScalarProperty Name="Zip_Code" ColumnName="Zip_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="WebshopDBModel.Sales">
+              <MappingFragment StoreEntitySet="Sales">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Seller_ID" ColumnName="Seller_ID" />
+                <ScalarProperty Name="Buyer_ID" ColumnName="Buyer_ID" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Shipping_Cost" ColumnName="Shipping_Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WebshopDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+                <ScalarProperty Name="Birth_Date" ColumnName="Birth_Date" />
+                <ScalarProperty Name="Registration_Date" ColumnName="Registration_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

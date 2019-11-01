@@ -69,6 +69,16 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic\Webshop.Logic.csproj">
+      <Project>{66749597-bc35-4675-aef8-bcdc2a5d30e9}</Project>
+      <Name>Webshop.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Webshop.Data\Webshop.Data.csproj">
+      <Project>{e1126db4-dcaf-4bcd-9540-856c31556207}</Project>
+      <Name>Webshop.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

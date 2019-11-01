@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data
+namespace Webshop.Data
 {
     using System;
     using System.Collections.Generic;
@@ -21,6 +21,7 @@ namespace Data
             this.Sales1 = new HashSet<Sales>();
         }
     
+        public decimal ID { get; set; }
         public string FullName { get; set; }
         public Nullable<decimal> Location_ID { get; set; }
         public string Email { get; set; }

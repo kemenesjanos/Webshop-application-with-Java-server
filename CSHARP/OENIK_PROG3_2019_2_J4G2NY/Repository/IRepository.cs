@@ -1,40 +1,44 @@
-﻿using System;
+﻿// <copyright file="IRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository
+namespace Webshop.Repository
 {
     /// <summary>
     /// CRUD methods interface.
     /// </summary>
-    interface IRepository
+    internal interface IRepository
     {
         /// <summary>
-        /// CREAT.
+        /// Add.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        void Add<T>(T obj);
+        /// <param name="obj">object to add.</param>
+        void Add(object obj);
+
         /// <summary>
-        /// READ.
+        /// Get.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        T Get<T>(int id);
+        /// <param name="id">Id of the object wanted to get.</param>
+        /// <returns>The wanted object.</returns>
+        object Get(int id);
+
         /// <summary>
-        /// UPDATE.
+        /// Update.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="oldid"></param>
-        /// <param name="newobject"></param>
-        void Update<T>(int oldid, T newobject);
+        /// <param name="oldid">The id of the old object.</param>
+        /// <param name="newobject">The new object.</param>
+        void Update(int oldid, object newobject);
+
         /// <summary>
-        /// DELETE.
+        /// Delete.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id of the deleting object.</param>
         void Delete(int id);
     }
 }
