@@ -23,7 +23,8 @@ namespace Webshop.Data
         public string Category { get; set; }
         public Nullable<decimal> Shipping_Cost { get; set; }
     
-        public virtual Users User { get; set; }
-        public virtual Users User1 { get; set; }
+        public Users Seller { get; set; }
+        public Users Buyer { get; set; }
+
     }
 }

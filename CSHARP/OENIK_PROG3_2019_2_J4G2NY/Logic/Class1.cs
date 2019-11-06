@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Webshop.Logic
 {
-
     public class Class1
     {
 

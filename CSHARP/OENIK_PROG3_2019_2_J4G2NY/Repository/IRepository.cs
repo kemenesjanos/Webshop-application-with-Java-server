@@ -11,29 +11,30 @@ using System.Threading.Tasks;
 namespace Webshop.Repository
 {
     /// <summary>
-    /// CRUD methods interface.
+    /// IRepository.
     /// </summary>
-    internal interface IRepository
+    /// <typeparam name="T">The generic type of the object.</typeparam>
+    public interface IRepository<T>
     {
         /// <summary>
         /// Add.
         /// </summary>
         /// <param name="obj">object to add.</param>
-        void Add(object obj);
+        void Add(T obj);
 
         /// <summary>
         /// Get.
         /// </summary>
         /// <param name="id">Id of the object wanted to get.</param>
         /// <returns>The wanted object.</returns>
-        object Get(int id);
+        T Get(int id);
 
         /// <summary>
         /// Update.
         /// </summary>
         /// <param name="oldid">The id of the old object.</param>
         /// <param name="newobject">The new object.</param>
-        void Update(int oldid, object newobject);
+        void Update(int oldid, T newobject);
 
         /// <summary>
         /// Delete.

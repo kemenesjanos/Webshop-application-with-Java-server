@@ -56,7 +56,6 @@
     <Compile Include="UserRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WrongParameterException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -11,7 +11,6 @@ using Webshop.Data;
 
 namespace Webshop.Repository
 {
-
     /// <summary>
     /// SaleRepository.
     /// </summary>
