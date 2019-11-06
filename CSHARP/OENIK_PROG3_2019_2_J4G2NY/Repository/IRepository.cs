@@ -27,19 +27,19 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the object wanted to get.</param>
         /// <returns>The wanted object.</returns>
-        T Get(int id);
+        T Get(decimal id);
 
         /// <summary>
         /// Update.
         /// </summary>
         /// <param name="oldid">The id of the old object.</param>
         /// <param name="newobject">The new object.</param>
-        void Update(int oldid, T newobject);
+        void Update(decimal oldid, T newobject);
 
         /// <summary>
         /// Delete.
         /// </summary>
         /// <param name="id">Id of the deleting object.</param>
-        void Delete(int id);
+        void Delete(decimal id);
     }
 }

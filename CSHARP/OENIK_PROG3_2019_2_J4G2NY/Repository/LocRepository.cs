@@ -53,7 +53,7 @@ namespace Webshop.Repository
         /// Delete().
         /// </summary>
         /// <param name="id">Id of the deleted object.</param>
-        public void Delete(int id)
+        public void Delete(decimal id)
         {
             this.dB.Locs.Remove(this.Get(id));
             this.dB.SaveChanges();
@@ -64,7 +64,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the object.</param>
         /// <returns>The required object.</returns>
-        public Loc Get(int id)
+        public Loc Get(decimal id)
         {
             return this.dB.Locs.FirstOrDefault(t => t.ID == id);
         }
@@ -74,7 +74,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="oldid">The old object's ID.</param>
         /// <param name="newobject">The new object.</param>
-        public void Update(int oldid, Loc newobject)
+        public void Update(decimal oldid, Loc newobject)
         {
             this.Delete(oldid);
             this.Add(newobject);

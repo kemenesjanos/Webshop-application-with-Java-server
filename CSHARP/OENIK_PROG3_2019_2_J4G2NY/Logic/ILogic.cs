@@ -38,10 +38,10 @@ namespace Webshop.Logic
         /// <param name="price">price.</param>
         /// <param name="category">category.</param>
         /// <param name="shipping_Cost">shipping cost.</param>
-        /// <param name="seller">seller.</param>
-        /// <param name="buyer">buyer.</param>
+        /// <param name="sellerId">seller.</param>
+        /// <param name="buyerId">buyer.</param>
         /// <returns>If the params are good bool.</returns>
-        bool InsertSalesData(decimal id, DateTime transaction_Date, string product_Name, decimal price, string category, decimal shipping_Cost, Users seller, Users buyer);
+        bool InsertSalesData(decimal id, DateTime transaction_Date, string product_Name, decimal price, string category, decimal shipping_Cost, decimal sellerId, decimal buyerId);
 
         /// <summary>
         /// Insert data to Users.
@@ -52,9 +52,9 @@ namespace Webshop.Logic
         /// <param name="phone_Number">phone number.</param>
         /// <param name="birth_Date">birth date.</param>
         /// <param name="registration_Date">registration date.</param>
-        /// <param name="loc">location.</param>
+        /// <param name="locId">location.</param>
         /// <returns>If the params are good bool.</returns>
-        bool InsertUsersData(decimal id, string fullName, string email, decimal phone_Number, DateTime birth_Date, DateTime registration_Date, Loc loc);
+        bool InsertUsersData(decimal id, string fullName, string email, decimal phone_Number, DateTime birth_Date, DateTime registration_Date, decimal locId);
 
         /// <summary>
         /// Get location by id.
@@ -100,39 +100,45 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="oldid">oldid.</param>
         /// <param name="newLoc">new Location.</param>
-        void UpdateLocation(decimal oldid, Loc newLoc);
+        /// <returns>Bool Success.</returns>
+        bool UpdateLocation(decimal oldid, Loc newLoc);
 
         /// <summary>
         /// Update Sale.
         /// </summary>
         /// <param name="oldid">old id.</param>
         /// <param name="newSale"> new Sale.</param>
-        void UpdateSale(decimal oldid, Loc newSale);
+        /// <returns>Bool Success.</returns>
+        bool UpdateSale(decimal oldid, Sales newSale);
 
         /// <summary>
         /// Update user.
         /// </summary>
         /// <param name="oldid">old id.</param>
         /// <param name="newUser">new User.</param>
-        void UpdateUser(decimal oldid, Loc newUser);
+        /// <returns>Bool Success.</returns>
+        bool UpdateUser(decimal oldid, Users newUser);
 
         /// <summary>
         /// Delete location.
         /// </summary>
         /// <param name="id">id.</param>
-        void DeleteLocation(decimal id);
+        /// <returns>Bool Success.</returns>
+        bool DeleteLocation(decimal id);
 
         /// <summary>
         /// Delete sale.
         /// </summary>
         /// <param name="id">id.</param>
-        void DeleteSale(decimal id);
+        /// <returns>Bool Success.</returns>
+        bool DeleteSale(decimal id);
 
         /// <summary>
         /// Delete User.
         /// </summary>
         /// <param name="id">id.</param>
-        void DeleteUser(decimal id);
+        /// <returns>Bool Success.</returns>
+        bool DeleteUser(decimal id);
 
         // Non CRUD methods.
 

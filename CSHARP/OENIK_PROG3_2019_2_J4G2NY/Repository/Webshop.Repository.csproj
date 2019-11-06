@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocRepository.cs" />
+    <Compile Include="RepositoryHelper.cs" />
     <Compile Include="SaleRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="IRepository.cs" />
@@ -60,6 +61,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

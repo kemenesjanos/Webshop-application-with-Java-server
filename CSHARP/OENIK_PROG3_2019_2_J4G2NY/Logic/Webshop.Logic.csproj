@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Logic.cs" />
     <Compile Include="ILogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +63,7 @@
     <None Include="stylecop1.json" />
     <None Include="stylecop10.json" />
     <None Include="stylecop11.json" />
+    <None Include="stylecop12.json" />
     <None Include="stylecop2.json" />
     <None Include="stylecop3.json" />
     <None Include="stylecop4.json" />
