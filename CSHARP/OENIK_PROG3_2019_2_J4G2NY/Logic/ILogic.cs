@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="ILogic.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +16,7 @@ namespace Webshop.Logic
     /// </summary>
     internal interface ILogic
     {
+        // CRUD methods
 
         /// <summary>
         /// Insert data to Location.
@@ -22,7 +27,7 @@ namespace Webshop.Logic
         /// <param name="house_number">house number.</param>
         /// <param name="zip_code">zip code.</param>
         /// <returns>If the params are good bool.</returns>
-        bool InsertLocationData(decimal id, string country, string street, decimal house_number,decimal zip_code);
+        bool InsertLocationData(decimal id, string country, string street, decimal house_number, decimal zip_code);
 
         /// <summary>
         /// Insert data to Sales.
@@ -73,6 +78,24 @@ namespace Webshop.Logic
         Users GetUserByID(decimal id);
 
         /// <summary>
+        /// Get all Locations.
+        /// </summary>
+        /// <returns>All location.</returns>
+        IEnumerable<Loc> GetAllLocations();
+
+        /// <summary>
+        /// Get all sales.
+        /// </summary>
+        /// <returns>All sale.</returns>
+        IEnumerable<Sales> GetAllSales();
+
+        /// <summary>
+        /// Get all users.
+        /// </summary>
+        /// <returns>All users.</returns>
+        IEnumerable<Users> GetAllUsers();
+
+        /// <summary>
         /// Update Location.
         /// </summary>
         /// <param name="oldid">oldid.</param>
@@ -110,5 +133,53 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="id">id.</param>
         void DeleteUser(decimal id);
+
+        // Non CRUD methods.
+
+        /// <summary>
+        /// Select Sales where the Seller and the Buyer In The Same Town.
+        /// </summary>
+        /// <returns>IQueryable sales.</returns>
+        IQueryable<Sales> SelectSalesWhereTheSellerAndTheBuyerInTheSameTown();
+
+        /// <summary>
+        /// SelectUsersWhereTheyAreOnlyBuyers.
+        /// </summary>
+        /// <returns>IQueryable users.</returns>
+        IQueryable<Users> SelectUsersWhereTheyAreOnlyBuyers();
+
+        /// <summary>
+        /// SelectUsersWhereTheyAreOnlySellers.
+        /// </summary>
+        /// <returns>IQueryable users.</returns>
+        IQueryable<Users> SelectUsersWhereTheyAreOnlySellers();
+
+        /// <summary>
+        /// SelectUsersWhereIsNoSale.
+        /// </summary>
+        /// <returns>IQueryable users.</returns>
+        IQueryable<Users> SelectUsersWhereIsNoSale();
+
+        /// <summary>
+        /// HowMuchThePeopleOfThisCitySpentAVG.
+        /// </summary>
+        /// <param name="cityName">City name.</param>
+        /// <returns>Avg spent in this city.</returns>
+        int HowMuchThePeopleOfThisCitySpentAVG(string cityName);
+
+        /// <summary>
+        /// WhichCategoryPeopleInThisAgeGroupSpentTheMost.
+        /// </summary>
+        /// <param name="minAge">min age.</param>
+        /// <param name="maxAge">max age.</param>
+        /// <returns>Category name.</returns>
+        string WhichCategoryPeopleInThisAgeGroupSpentTheMost(int minAge, int maxAge);
+
+        /// <summary>
+        /// Request an Equity Ratio from Java.
+        /// </summary>
+        /// <param name="price">Price.</param>
+        /// <returns>Equity Ratio.</returns>
+        float EquityRatioRequestJava(int price);
     }
 }
