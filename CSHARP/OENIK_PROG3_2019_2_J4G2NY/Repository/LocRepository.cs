@@ -15,7 +15,7 @@ namespace Webshop.Repository
     /// <summary>
     /// LocRepository.
     /// </summary>
-    public class LocRepository : IRepository
+    public class LocRepository : IRepository<Loc>
     {
         /// <summary>
         /// WebshopDBEntities db.
@@ -41,20 +41,13 @@ namespace Webshop.Repository
         }
 
         /// <summary>
-        /// Add().
+        /// Add.
         /// </summary>
-        /// <param name="obj">Object for add.</param>
-        public void Add(object obj)
+        /// <param name="obj">Location object.</param>
+        public void Add(Loc obj)
         {
-            if (obj is Loc)
-            {
-                this.dB.Locs.Add(obj as Loc);
-                this.dB.SaveChanges();
-            }
-            else
-            {
-                throw new WrongParameterException(obj);
-            }
+            this.dB.Locs.Add(obj);
+            this.dB.SaveChanges();
         }
 
         /// <summary>
@@ -63,7 +56,7 @@ namespace Webshop.Repository
         /// <param name="id">Id of the deleted object.</param>
         public void Delete(int id)
         {
-            this.dB.Locs.Remove(this.Get(id) as Loc);
+            this.dB.Locs.Remove(this.Get(id));
             this.dB.SaveChanges();
         }
 
@@ -72,7 +65,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the object.</param>
         /// <returns>The required object.</returns>
-        public object Get(int id)
+        public Loc Get(int id)
         {
             return this.dB.Locs.FirstOrDefault(t => t.ID == id);
         }
@@ -82,17 +75,10 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="oldid">The old object's ID.</param>
         /// <param name="newobject">The new object.</param>
-        public void Update(int oldid, object newobject)
+        public void Update(int oldid, Loc newobject)
         {
-            if (newobject is Loc)
-            {
-                this.Delete(oldid);
-                this.Add(newobject as Loc);
-            }
-            else
-            {
-                throw new WrongParameterException(newobject);
-            }
+            this.Delete(oldid);
+            this.Add(newobject);
         }
     }
 }

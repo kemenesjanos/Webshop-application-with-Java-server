@@ -14,7 +14,7 @@ namespace Webshop.Repository
     /// <summary>
     /// UserRepository.
     /// </summary>
-    public class UserRepository : IRepository
+    public class UserRepository : IRepository<Users>
     {
         /// <summary>
         /// WebshopDBEntities db.
@@ -43,17 +43,10 @@ namespace Webshop.Repository
         /// Add().
         /// </summary>
         /// <param name="obj">Object for add.</param>
-        public void Add(object obj)
+        public void Add(Users obj)
         {
-            if (obj is Users)
-            {
-                this.dB.Users.Add(obj as Users);
+                this.dB.Users.Add(obj);
                 this.dB.SaveChanges();
-            }
-            else
-            {
-                throw new WrongParameterException(obj);
-            }
         }
 
         /// <summary>
@@ -62,7 +55,7 @@ namespace Webshop.Repository
         /// <param name="id">Id of the deleted object.</param>
         public void Delete(int id)
         {
-            this.dB.Users.Remove(this.Get(id) as Users);
+            this.dB.Users.Remove(this.Get(id));
             this.dB.SaveChanges();
         }
 
@@ -71,7 +64,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the object.</param>
         /// <returns>The required object.</returns>
-        public object Get(int id)
+        public Users Get(int id)
         {
             return this.dB.Users.FirstOrDefault(t => t.ID == id);
         }
@@ -81,17 +74,10 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="oldid">The old object's ID.</param>
         /// <param name="newobject">The new object.</param>
-        public void Update(int oldid, object newobject)
+        public void Update(int oldid, Users newobject)
         {
-            if (newobject is Users)
-            {
-                this.Delete(oldid);
-                this.Add(newobject as Users);
-            }
-            else
-            {
-                throw new WrongParameterException(newobject);
-            }
+            this.Delete(oldid);
+            this.Add(newobject);
         }
     }
 }

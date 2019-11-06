@@ -1,4 +1,4 @@
-﻿// <copyright file="UserRepository.cs" company="PlaceholderCompany">
+﻿// <copyright file="SaleRepository.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -15,7 +15,7 @@ namespace Webshop.Repository
     /// <summary>
     /// SaleRepository.
     /// </summary>
-    public class SaleRepository : IRepository
+    public class SaleRepository : IRepository<Sales>
     {
         /// <summary>
         /// WebshopDBEntities db.
@@ -44,17 +44,10 @@ namespace Webshop.Repository
         /// Add().
         /// </summary>
         /// <param name="obj">Object for add.</param>
-        public void Add(object obj)
+        public void Add(Sales obj)
         {
-            if (obj is Sales)
-            {
-                this.dB.Sales.Add(obj as Sales);
-                this.dB.SaveChanges();
-            }
-            else
-            {
-                throw new WrongParameterException(obj);
-            }
+            this.dB.Sales.Add(obj);
+            this.dB.SaveChanges();
         }
 
         /// <summary>
@@ -63,7 +56,7 @@ namespace Webshop.Repository
         /// <param name="id">Id of the deleted object.</param>
         public void Delete(int id)
         {
-            this.dB.Sales.Remove(this.Get(id) as Sales);
+            this.dB.Sales.Remove(this.Get(id));
             this.dB.SaveChanges();
         }
 
@@ -72,7 +65,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the object.</param>
         /// <returns>The required object.</returns>
-        public object Get(int id)
+        public Sales Get(int id)
         {
             return this.dB.Sales.FirstOrDefault(t => t.ID == id);
         }
@@ -82,17 +75,10 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="oldid">The old object's ID.</param>
         /// <param name="newobject">The new object.</param>
-        public void Update(int oldid, object newobject)
+        public void Update(int oldid, Sales newobject)
         {
-            if (newobject is Sales)
-            {
-                this.Delete(oldid);
-                this.Add(newobject as Sales);
-            }
-            else
-            {
-                throw new WrongParameterException(newobject);
-            }
+            this.Delete(oldid);
+            this.Add(newobject);
         }
     }
 }
