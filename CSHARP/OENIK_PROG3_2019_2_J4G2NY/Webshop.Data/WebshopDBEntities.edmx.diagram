@@ -8,7 +8,10 @@
         <EntityTypeShape EntityType="WebshopDBModel.Loc" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="WebshopDBModel.Sale" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="WebshopDBModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="WebshopDBModel.location_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopDBModel.location_fk" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.25" PointY="2.4612939453125" />
+          <ConnectorPoint PointX="3" PointY="2.4612939453125" />
+        </AssociationConnector>
         <AssociationConnector Association="WebshopDBModel.buyer_fk" ManuallyRouted="false" />
         <AssociationConnector Association="WebshopDBModel.seller_fk" ManuallyRouted="false" />
       </Diagram>

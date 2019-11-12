@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Webshop.Data;
 
 namespace Webshop.Repository
 {
@@ -15,25 +16,25 @@ namespace Webshop.Repository
     /// </summary>
     public class RepositoryHelper
     {
-        private readonly LocRepository locRepo;
-        private readonly SaleRepository saleRepo;
-        private readonly UserRepository userRepo;
+        private readonly IRepository<Loc> locRepo;
+        private readonly IRepository<Sale> saleRepo;
+        private readonly IRepository<User> userRepo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryHelper"/> class.
         /// Ctor.
         /// </summary>
-        public RepositoryHelper()
+        public RepositoryHelper(IRepository<Loc> locRepository, IRepository<Sale> saleRepository, IRepository<User> userRepository)
         {
-            this.locRepo = new LocRepository();
-            this.saleRepo = new SaleRepository();
-            this.userRepo = new UserRepository();
+            this.locRepo = locRepository;
+            this.saleRepo = saleRepository;
+            this.userRepo = userRepository;
         }
 
         /// <summary>
         /// Gets loc repository.
         /// </summary>
-        public virtual LocRepository LocRepository
+        public virtual IRepository<Loc> LocRepository
         {
             get { return this.locRepo; }
         }
@@ -41,7 +42,7 @@ namespace Webshop.Repository
         /// <summary>
         /// Gets Sale repository.
         /// </summary>
-        public virtual SaleRepository SaleRepository
+        public virtual IRepository<Sale> SaleRepository
         {
             get { return this.saleRepo; }
         }
@@ -49,9 +50,11 @@ namespace Webshop.Repository
         /// <summary>
         /// Gets User repository.
         /// </summary>
-        public virtual UserRepository UserRepository
+        public virtual IRepository<User> UserRepository
         {
             get { return this.userRepo; }
         }
+
+        
     }
 }

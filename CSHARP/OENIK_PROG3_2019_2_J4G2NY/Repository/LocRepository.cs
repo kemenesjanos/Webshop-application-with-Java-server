@@ -34,7 +34,7 @@ namespace Webshop.Repository
         /// GetAll().
         /// </summary>
         /// <returns>IQueryable Users.</returns>
-        public IQueryable<Loc> GetAll()
+        public IEnumerable<Loc> GetAll()
         {
             return this.dB.Locs;
         }
@@ -66,7 +66,8 @@ namespace Webshop.Repository
         /// <returns>The required object.</returns>
         public Loc Get(decimal id)
         {
-            return this.dB.Locs.FirstOrDefault(t => t.ID == id);
+            return dB.Locs.Where(x => x.ID == id).FirstOrDefault();
+            
         }
 
         /// <summary>

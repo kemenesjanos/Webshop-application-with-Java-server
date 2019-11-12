@@ -41,5 +41,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the deleting object.</param>
         void Delete(decimal id);
+
+        IEnumerable<T> GetAll();
     }
 }

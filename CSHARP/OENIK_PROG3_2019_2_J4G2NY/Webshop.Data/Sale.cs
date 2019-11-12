@@ -12,7 +12,7 @@ namespace Webshop.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Sales
+    public partial class Sale
     {
         public decimal ID { get; set; }
         public Nullable<decimal> Seller_ID { get; set; }
@@ -23,8 +23,7 @@ namespace Webshop.Data
         public string Category { get; set; }
         public Nullable<decimal> Shipping_Cost { get; set; }
     
-        public Users Seller { get; set; }
-        public Users Buyer { get; set; }
-
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

@@ -20,15 +20,15 @@ namespace Webshop.Logic
         /// <summary>
         /// Repo helper.
         /// </summary>
-        private RepositoryHelper repoHelper;
+        public RepositoryHelper repoHelper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Logic"/> class.
         /// ctor.
         /// </summary>
-        public Logic()
+        public Logic(RepositoryHelper repositoryHelper)
         {
-            this.repoHelper = new RepositoryHelper();
+            this.repoHelper = repositoryHelper;
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Webshop.Logic
         /// Get all sales.
         /// </summary>
         /// <returns>IEnumerable sales.</returns>
-        public IEnumerable<Sales> GetAllSales()
+        public IEnumerable<Sale> GetAllSales()
         {
             return this.repoHelper.SaleRepository.GetAll();
         }
@@ -112,7 +112,7 @@ namespace Webshop.Logic
         /// Get all Users.
         /// </summary>
         /// <returns>IEnumerable users.</returns>
-        public IEnumerable<Users> GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
             return this.repoHelper.UserRepository.GetAll();
         }
@@ -132,7 +132,7 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>Sale.</returns>
-        public Sales GetSaleByID(decimal id)
+        public Sale GetSaleByID(decimal id)
         {
             return this.repoHelper.SaleRepository.Get(id);
         }
@@ -142,7 +142,7 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>User.</returns>
-        public Users GetUserByID(decimal id)
+        public User GetUserByID(decimal id)
         {
             return this.repoHelper.UserRepository.Get(id);
         }
@@ -199,7 +199,7 @@ namespace Webshop.Logic
             if (this.GetSaleByID(id) == null && shipping_Cost >= 0 && price >= 0 &&
                 this.GetUserByID(sellerId) != null && this.GetUserByID(buyerId) != null)
             {
-                Sales s = new Sales()
+                Sale s = new Sale()
                 {
                     ID = id,
                     Transaction_Date = transaction_Date,
@@ -209,8 +209,6 @@ namespace Webshop.Logic
                     Shipping_Cost = shipping_Cost,
                     Seller_ID = sellerId,
                     Buyer_ID = buyerId,
-                    Buyer = this.GetUserByID(buyerId),
-                    Seller = this.GetUserByID(sellerId),
                 };
                 this.repoHelper.SaleRepository.Add(s);
                 return true;
@@ -236,7 +234,7 @@ namespace Webshop.Logic
         {
             if (this.GetUserByID(id) == null && phone_Number > 999999 && this.GetLocByID(locId) != null)
             {
-                Users u = new Users()
+                User u = new User()
                 {
                     ID = id,
                     FullName = fullName,
@@ -256,22 +254,22 @@ namespace Webshop.Logic
             }
         }
 
-        public IQueryable<Sales> SelectSalesWhereTheSellerAndTheBuyerInTheSameTown()
+        public IQueryable<Sale> SelectSalesWhereTheSellerAndTheBuyerInTheSameTown()
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Users> SelectUsersWhereIsNoSale()
+        public IQueryable<User> SelectUsersWhereIsNoSale()
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Users> SelectUsersWhereTheyAreOnlyBuyers()
+        public IQueryable<User> SelectUsersWhereTheyAreOnlyBuyers()
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Users> SelectUsersWhereTheyAreOnlySellers()
+        public IQueryable<User> SelectUsersWhereTheyAreOnlySellers()
         {
             throw new NotImplementedException();
         }
@@ -302,7 +300,7 @@ namespace Webshop.Logic
         /// <param name="oldid">old id.</param>
         /// <param name="newSale">new sale.</param>
         /// <returns>Bool success.</returns>
-        public bool UpdateSale(decimal oldid, Sales newSale)
+        public bool UpdateSale(decimal oldid, Sale newSale)
         {
             if (this.GetSaleByID(oldid) != null)
             {
@@ -322,7 +320,7 @@ namespace Webshop.Logic
         /// <param name="oldid">old id.</param>
         /// <param name="newUser">new user.</param>
         /// <returns>bool success.</returns>
-        public bool UpdateUser(decimal oldid, Users newUser)
+        public bool UpdateUser(decimal oldid, User newUser)
         {
             if (this.GetUserByID(oldid) != null)
             {

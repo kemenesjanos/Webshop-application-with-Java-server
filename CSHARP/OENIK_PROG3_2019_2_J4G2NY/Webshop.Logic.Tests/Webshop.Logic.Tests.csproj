@@ -68,7 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="LogicTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +85,10 @@
     <ProjectReference Include="..\Logic\Webshop.Logic.csproj">
       <Project>{66749597-bc35-4675-aef8-bcdc2a5d30e9}</Project>
       <Name>Webshop.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Webshop.Repository.csproj">
+      <Project>{28a69706-b31c-4c06-97dc-9a9010f0e4a3}</Project>
+      <Name>Webshop.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Webshop.Data\Webshop.Data.csproj">
       <Project>{e1126db4-dcaf-4bcd-9540-856c31556207}</Project>

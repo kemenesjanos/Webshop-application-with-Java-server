@@ -14,7 +14,7 @@ namespace Webshop.Repository
     /// <summary>
     /// UserRepository.
     /// </summary>
-    public class UserRepository : IRepository<Users>
+    public class UserRepository : IRepository<User>
     {
         /// <summary>
         /// WebshopDBEntities db.
@@ -34,7 +34,7 @@ namespace Webshop.Repository
         /// GetAll().
         /// </summary>
         /// <returns>IQueryable Users.</returns>
-        public IQueryable<Users> GetAll()
+        public IQueryable<User> GetAll()
         {
             return this.dB.Users;
         }
@@ -43,7 +43,7 @@ namespace Webshop.Repository
         /// Add().
         /// </summary>
         /// <param name="obj">Object for add.</param>
-        public void Add(Users obj)
+        public void Add(User obj)
         {
                 this.dB.Users.Add(obj);
                 this.dB.SaveChanges();
@@ -64,7 +64,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the object.</param>
         /// <returns>The required object.</returns>
-        public Users Get(decimal id)
+        public User Get(decimal id)
         {
             return this.dB.Users.FirstOrDefault(t => t.ID == id);
         }
@@ -74,10 +74,15 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="oldid">The old object's ID.</param>
         /// <param name="newobject">The new object.</param>
-        public void Update(decimal oldid, Users newobject)
+        public void Update(decimal oldid, User newobject)
         {
             this.Delete(oldid);
             this.Add(newobject);
+        }
+
+        IEnumerable<User> IRepository<User>.GetAll()
+        {
+            return dB.Users.ToArray<User>();
         }
     }
 }

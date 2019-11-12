@@ -26,7 +26,7 @@ namespace Webshop.Data
         }
     
         public virtual DbSet<Loc> Locs { get; set; }
-        public virtual DbSet<Sales> Sales { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Sale> Sales { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

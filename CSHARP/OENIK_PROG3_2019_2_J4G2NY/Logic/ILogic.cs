@@ -14,7 +14,7 @@ namespace Webshop.Logic
     /// <summary>
     /// ILogic.
     /// </summary>
-    internal interface ILogic
+    public interface ILogic
     {
         // CRUD methods
 
@@ -68,14 +68,14 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>Sale.</returns>
-        Sales GetSaleByID(decimal id);
+        Sale GetSaleByID(decimal id);
 
         /// <summary>
         /// Get user by id.
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>user.</returns>
-        Users GetUserByID(decimal id);
+        User GetUserByID(decimal id);
 
         /// <summary>
         /// Get all Locations.
@@ -87,13 +87,13 @@ namespace Webshop.Logic
         /// Get all sales.
         /// </summary>
         /// <returns>All sale.</returns>
-        IEnumerable<Sales> GetAllSales();
+        IEnumerable<Sale> GetAllSales();
 
         /// <summary>
         /// Get all users.
         /// </summary>
         /// <returns>All users.</returns>
-        IEnumerable<Users> GetAllUsers();
+        IEnumerable<User> GetAllUsers();
 
         /// <summary>
         /// Update Location.
@@ -109,7 +109,7 @@ namespace Webshop.Logic
         /// <param name="oldid">old id.</param>
         /// <param name="newSale"> new Sale.</param>
         /// <returns>Bool Success.</returns>
-        bool UpdateSale(decimal oldid, Sales newSale);
+        bool UpdateSale(decimal oldid, Sale newSale);
 
         /// <summary>
         /// Update user.
@@ -117,7 +117,7 @@ namespace Webshop.Logic
         /// <param name="oldid">old id.</param>
         /// <param name="newUser">new User.</param>
         /// <returns>Bool Success.</returns>
-        bool UpdateUser(decimal oldid, Users newUser);
+        bool UpdateUser(decimal oldid, User newUser);
 
         /// <summary>
         /// Delete location.
@@ -146,25 +146,25 @@ namespace Webshop.Logic
         /// Select Sales where the Seller and the Buyer In The Same Town.
         /// </summary>
         /// <returns>IQueryable sales.</returns>
-        IQueryable<Sales> SelectSalesWhereTheSellerAndTheBuyerInTheSameTown();
+        IQueryable<Sale> SelectSalesWhereTheSellerAndTheBuyerInTheSameTown();
 
         /// <summary>
         /// SelectUsersWhereTheyAreOnlyBuyers.
         /// </summary>
         /// <returns>IQueryable users.</returns>
-        IQueryable<Users> SelectUsersWhereTheyAreOnlyBuyers();
+        IQueryable<User> SelectUsersWhereTheyAreOnlyBuyers();
 
         /// <summary>
         /// SelectUsersWhereTheyAreOnlySellers.
         /// </summary>
         /// <returns>IQueryable users.</returns>
-        IQueryable<Users> SelectUsersWhereTheyAreOnlySellers();
+        IQueryable<User> SelectUsersWhereTheyAreOnlySellers();
 
         /// <summary>
         /// SelectUsersWhereIsNoSale.
         /// </summary>
         /// <returns>IQueryable users.</returns>
-        IQueryable<Users> SelectUsersWhereIsNoSale();
+        IQueryable<User> SelectUsersWhereIsNoSale();
 
         /// <summary>
         /// HowMuchThePeopleOfThisCitySpentAVG.

@@ -17,7 +17,7 @@ namespace Webshop.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Loc()
         {
-            this.Users = new HashSet<Users>();
+            this.Users = new HashSet<User>();
         }
     
         public decimal ID { get; set; }
@@ -27,6 +27,6 @@ namespace Webshop.Data
         public Nullable<decimal> Zip_Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

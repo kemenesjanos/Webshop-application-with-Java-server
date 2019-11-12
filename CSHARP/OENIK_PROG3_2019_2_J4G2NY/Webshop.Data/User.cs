@@ -12,13 +12,13 @@ namespace Webshop.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public User()
         {
-            this.Sales = new HashSet<Sales>();
-            this.Sales1 = new HashSet<Sales>();
+            this.Sales = new HashSet<Sale>();
+            this.Sales1 = new HashSet<Sale>();
         }
     
         public decimal ID { get; set; }
@@ -31,8 +31,8 @@ namespace Webshop.Data
     
         public virtual Loc Loc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sales> Sales { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sales> Sales1 { get; set; }
+        public virtual ICollection<Sale> Sales1 { get; set; }
     }
 }
