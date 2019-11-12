@@ -20,12 +20,13 @@ namespace Webshop.Logic
         /// <summary>
         /// Repo helper.
         /// </summary>
-        public RepositoryHelper repoHelper;
+        private RepositoryHelper repoHelper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Logic"/> class.
-        /// ctor.
+        /// Ctor.
         /// </summary>
+        /// <param name="repositoryHelper">repo helper.</param>
         public Logic(RepositoryHelper repositoryHelper)
         {
             this.repoHelper = repositoryHelper;
@@ -85,7 +86,7 @@ namespace Webshop.Logic
             }
         }
 
-        public float EquityRatioRequestJava(int price)
+        public int EquityRatioRequestJava(int price)
         {
             throw new NotImplementedException();
         }

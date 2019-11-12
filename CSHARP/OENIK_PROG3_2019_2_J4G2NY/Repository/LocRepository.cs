@@ -66,8 +66,7 @@ namespace Webshop.Repository
         /// <returns>The required object.</returns>
         public Loc Get(decimal id)
         {
-            return dB.Locs.Where(x => x.ID == id).FirstOrDefault();
-            
+            return this.dB.Locs.Where(x => x.ID == id).FirstOrDefault();
         }
 
         /// <summary>
