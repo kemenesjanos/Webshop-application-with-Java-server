@@ -32,6 +32,11 @@ namespace Webshop.Logic
             this.repoHelper = repositoryHelper;
         }
 
+        public Logic()
+        {
+            this.repoHelper = new RepositoryHelper(new LocRepository(), new SaleRepository(), new UserRepository());
+        }
+
         /// <summary>
         /// Delete location.
         /// </summary>
@@ -233,8 +238,9 @@ namespace Webshop.Logic
         /// <returns>Bool success.</returns>
         public bool InsertUsersData(decimal id, string fullName, string email, decimal phone_Number, DateTime birth_Date, DateTime registration_Date, decimal locId)
         {
-            if (this.GetUserByID(id) == null && phone_Number > 999999 && this.GetLocByID(locId) != null)
+            if (this.GetUserByID(id) == null && phone_Number > 999999999 && this.GetLocByID(locId) != null)
             {
+                DBHandler.Instance.Dispose();
                 User u = new User()
                 {
                     ID = id,
@@ -244,7 +250,8 @@ namespace Webshop.Logic
                     Birth_Date = birth_Date,
                     Registration_Date = registration_Date,
                     Location_ID = locId,
-                    Loc = this.GetLocByID(locId),
+
+                    // Loc = this.GetLocByID(locId),
                 };
                 this.repoHelper.UserRepository.Add(u);
                 return true;

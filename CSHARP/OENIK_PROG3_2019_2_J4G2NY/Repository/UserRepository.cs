@@ -9,34 +9,36 @@ using System.Text;
 using System.Threading.Tasks;
 using Webshop.Data;
 
+
 namespace Webshop.Repository
 {
+
     /// <summary>
     /// UserRepository.
     /// </summary>
     public class UserRepository : IRepository<User>
     {
-        /// <summary>
-        /// WebshopDBEntities db.
-        /// </summary>
-        private readonly WebshopDBEntities dB;
+        ///// <summary>
+        ///// WebshopDBEntities db.
+        ///// </summary>
+        //private WebshopDBEntities new DBHandler().webshopDBEntities;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserRepository"/> class.
-        /// Ctor.
-        /// </summary>
-        public UserRepository()
-        {
-            this.dB = new WebshopDBEntities();
-        }
+        ///// <summary>
+        ///// Initializes a new instance of the <see cref="UserRepository"/> class.
+        ///// Ctor.
+        ///// </summary>
+        //public UserRepository()
+        //{
+        //    this.new DBHandler().webshopDBEntities = new WebshopDBEntities();
+        //}
 
         /// <summary>
         /// GetAll().
         /// </summary>
         /// <returns>IQueryable Users.</returns>
-        public IQueryable<User> GetAll()
+        public IEnumerable<User> GetAll()
         {
-            return this.dB.Users;
+                return new DBHandler().webshopDBEntities.Users;
         }
 
         /// <summary>
@@ -45,8 +47,11 @@ namespace Webshop.Repository
         /// <param name="obj">Object for add.</param>
         public void Add(User obj)
         {
-                this.dB.Users.Add(obj);
-                this.dB.SaveChanges();
+
+            DBHandler a = new DBHandler();
+            a.webshopDBEntities.Users.Add(obj);
+            a.webshopDBEntities.SaveChanges();
+            DBHandler.Instance.Dispose();
         }
 
         /// <summary>
@@ -55,8 +60,11 @@ namespace Webshop.Repository
         /// <param name="id">Id of the deleted object.</param>
         public void Delete(decimal id)
         {
-            this.dB.Users.Remove(this.Get(id));
-            this.dB.SaveChanges();
+            DBHandler a = new DBHandler();
+            var v = a.webshopDBEntities.Users.Where(u => u.ID == id).FirstOrDefault();
+            a.webshopDBEntities.Users.Remove(v);
+            a.webshopDBEntities.SaveChanges();
+            DBHandler.Instance.Dispose();
         }
 
         /// <summary>
@@ -66,7 +74,7 @@ namespace Webshop.Repository
         /// <returns>The required object.</returns>
         public User Get(decimal id)
         {
-            return this.dB.Users.FirstOrDefault(t => t.ID == id);
+            return new DBHandler().webshopDBEntities.Users.FirstOrDefault(t => t.ID == id);
         }
 
         /// <summary>
@@ -80,9 +88,5 @@ namespace Webshop.Repository
             this.Add(newobject);
         }
 
-        IEnumerable<User> IRepository<User>.GetAll()
-        {
-            return dB.Users.ToArray<User>();
-        }
     }
 }

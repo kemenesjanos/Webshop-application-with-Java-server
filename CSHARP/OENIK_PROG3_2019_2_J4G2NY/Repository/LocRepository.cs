@@ -16,19 +16,19 @@ namespace Webshop.Repository
     /// </summary>
     public class LocRepository : IRepository<Loc>
     {
-        /// <summary>
-        /// WebshopDBEntities db.
-        /// </summary>
-        private readonly WebshopDBEntities dB;
+        ///// <summary>
+        ///// WebshopDBEntities db.
+        ///// </summary>
+        //private readonly WebshopDBEntities new DBHandler().webshopDBEntities;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LocRepository"/> class.
-        /// Ctor.
-        /// </summary>
-        public LocRepository()
-        {
-            this.dB = new WebshopDBEntities();
-        }
+        ///// <summary>
+        ///// Initializes a new instance of the <see cref="LocRepository"/> class.
+        ///// Ctor.
+        ///// </summary>
+        //public LocRepository()
+        //{
+        //    this.new DBHandler().webshopDBEntities = new WebshopDBEntities();
+        //}
 
         /// <summary>
         /// GetAll().
@@ -36,7 +36,7 @@ namespace Webshop.Repository
         /// <returns>IQueryable Users.</returns>
         public IEnumerable<Loc> GetAll()
         {
-            return this.dB.Locs;
+            return new DBHandler().webshopDBEntities.Locs;
         }
 
         /// <summary>
@@ -45,8 +45,10 @@ namespace Webshop.Repository
         /// <param name="obj">Location object.</param>
         public void Add(Loc obj)
         {
-            this.dB.Locs.Add(obj);
-            this.dB.SaveChanges();
+            DBHandler a = new DBHandler();
+            a.webshopDBEntities.Locs.Add(obj);
+            a.webshopDBEntities.SaveChanges();
+            DBHandler.Instance.Dispose();
         }
 
         /// <summary>
@@ -55,8 +57,11 @@ namespace Webshop.Repository
         /// <param name="id">Id of the deleted object.</param>
         public void Delete(decimal id)
         {
-            this.dB.Locs.Remove(this.Get(id));
-            this.dB.SaveChanges();
+            DBHandler a = new DBHandler();
+            var v = a.webshopDBEntities.Locs.Where(u => u.ID == id).FirstOrDefault();
+            a.webshopDBEntities.Locs.Remove(v);
+            a.webshopDBEntities.SaveChanges();
+            DBHandler.Instance.Dispose();
         }
 
         /// <summary>
@@ -66,7 +71,7 @@ namespace Webshop.Repository
         /// <returns>The required object.</returns>
         public Loc Get(decimal id)
         {
-            return this.dB.Locs.Where(x => x.ID == id).FirstOrDefault();
+            return new DBHandler().webshopDBEntities.Locs.Where(x => x.ID == id).FirstOrDefault();
         }
 
         /// <summary>
