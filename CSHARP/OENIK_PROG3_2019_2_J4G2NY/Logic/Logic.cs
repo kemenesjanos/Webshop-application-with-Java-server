@@ -17,6 +17,7 @@ namespace Webshop.Logic
     /// </summary>
     public class Logic : ILogic
     {
+        
         /// <summary>
         /// Repo helper.
         /// </summary>
@@ -202,8 +203,9 @@ namespace Webshop.Logic
         /// <returns>Bool success.</returns>
         public bool InsertSalesData(decimal id, DateTime transaction_Date, string product_Name, decimal price, string category, decimal shipping_Cost, decimal sellerId, decimal buyerId)
         {
+            ;
             if (this.GetSaleByID(id) == null && shipping_Cost >= 0 && price >= 0 &&
-                this.GetUserByID(sellerId) != null && this.GetUserByID(buyerId) != null)
+                this.GetUserByID(sellerId) != null && this.GetUserByID(buyerId) != null && "ruházat,elektronika,háztartási,élelmiszer,mezőgazdasági,papír - írószer,játék,gépjármű,egyéb".Split(',').Contains(category))
             {
                 Sale s = new Sale()
                 {
@@ -290,7 +292,7 @@ namespace Webshop.Logic
         /// <returns>Bool Success.</returns>
         public bool UpdateLocation(decimal oldid, Loc newLoc)
         {
-            if (this.GetLocByID(oldid) != null)
+            if (this.GetLocByID(oldid) != null && this.GetLocByID(newLoc.ID) == null && newLoc.Zip_Code < 10000 && newLoc.Zip_Code > 999 && newLoc.House_Number > 0)
             {
                 this.repoHelper.LocRepository.Delete(oldid);
                 this.repoHelper.LocRepository.Add(newLoc);
@@ -310,7 +312,8 @@ namespace Webshop.Logic
         /// <returns>Bool success.</returns>
         public bool UpdateSale(decimal oldid, Sale newSale)
         {
-            if (this.GetSaleByID(oldid) != null)
+            if (this.GetSaleByID(oldid) != null && this.GetSaleByID(newSale.ID) == null && newSale.Shipping_Cost >= 0 && newSale.Price >= 0 &&
+                this.GetUserByID((decimal)newSale.Seller_ID) != null && this.GetUserByID((decimal)newSale.Buyer_ID) != null && "ruházat,elektronika,háztartási,élelmiszer,mezőgazdasági,papír - írószer,játék,gépjármű,egyéb".Split(',').Contains(newSale.Category))
             {
                 this.repoHelper.SaleRepository.Delete(oldid);
                 this.repoHelper.SaleRepository.Add(newSale);
@@ -330,7 +333,7 @@ namespace Webshop.Logic
         /// <returns>bool success.</returns>
         public bool UpdateUser(decimal oldid, User newUser)
         {
-            if (this.GetUserByID(oldid) != null)
+            if (this.GetUserByID(oldid) != null && this.GetUserByID(newUser.ID) == null && newUser.Phone_Number > 999999999 && this.GetLocByID((decimal)newUser.Location_ID) != null)
             {
                 this.repoHelper.UserRepository.Delete(oldid);
                 this.repoHelper.UserRepository.Add(newUser);

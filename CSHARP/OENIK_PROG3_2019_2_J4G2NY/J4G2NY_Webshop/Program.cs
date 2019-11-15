@@ -240,7 +240,7 @@ namespace Program
 
                                         if (a1 && er)
                                         {
-                                            Console.WriteLine("Az adat felvétele sikeres volt.");
+                                            Console.WriteLine("Az adattag törlése sikeres volt.");
                                         }
                                         else
                                         {
@@ -255,26 +255,217 @@ namespace Program
                                 }
                                 else if (t == "s")
                                 {
+                                    bool er;
 
+                                    do
+                                    {
+                                        Console.WriteLine("Írja be az adatokat!");
+                                        Console.WriteLine("ID:");
+                                        decimal id;
+                                        bool a1 = decimal.TryParse(Console.ReadLine(), out id);
+
+                                        er = logic.DeleteSale(id);
+
+                                        DBHandler.Instance.Dispose();
+
+                                        if (a1 && er)
+                                        {
+                                            Console.WriteLine("Az adattag törlése sikeres volt.");
+                                        }
+                                        else
+                                        {
+                                            er = false;
+                                            Console.WriteLine("Az adatok nem helyesek. Szeretné mégegyszer megpróbálni ? y/n");
+                                            if (Console.ReadLine().ToLower() == "n")
+                                            {
+                                                er = true;
+                                            }
+                                        }
+                                    } while (!er);
                                 }
                                 else if (t == "l")
                                 {
+                                    bool er;
 
+                                    do
+                                    {
+                                        Console.WriteLine("Írja be az adatokat!");
+                                        Console.WriteLine("ID:");
+                                        decimal id;
+                                        bool a1 = decimal.TryParse(Console.ReadLine(), out id);
+
+                                        er = logic.DeleteLocation(id);
+
+                                        DBHandler.Instance.Dispose();
+
+                                        if (a1 && er)
+                                        {
+                                            Console.WriteLine("Az adattag törlése sikeres volt.");
+                                        }
+                                        else
+                                        {
+                                            er = false;
+                                            Console.WriteLine("Az adatok nem helyesek. Szeretné mégegyszer megpróbálni ? y/n");
+                                            if (Console.ReadLine().ToLower() == "n")
+                                            {
+                                                er = true;
+                                            }
+                                        }
+                                    } while (!er);
                                 }
 
                                 break;
                             case "m":
                                 if (t == "u")
                                 {
+                                    bool er;
 
+                                    do
+                                    {
+                                        Console.WriteLine("Írja be az adatokat!");
+
+                                        Console.WriteLine("Módosítandó id");
+                                        decimal mid;
+                                        bool a6 = decimal.TryParse(Console.ReadLine(), out mid);
+                                        Console.WriteLine("ID:");
+                                        decimal id;
+                                        bool a1 = decimal.TryParse(Console.ReadLine(), out id);
+                                        Console.WriteLine("Full name:");
+                                        string fullname = Console.ReadLine();
+                                        Console.WriteLine("email:");
+                                        string email = Console.ReadLine();
+                                        Console.WriteLine("Phone number:");
+                                        decimal phone;
+                                        bool a2 = decimal.TryParse(Console.ReadLine(), out phone);
+                                        Console.WriteLine("Birth Date: YYYY.MM.DD");
+                                        DateTime date;
+                                        bool a3 = DateTime.TryParse(Console.ReadLine(), out date);
+                                        Console.WriteLine("Registration date: YYYY.MM.DD");
+                                        DateTime date2;
+                                        bool a4 = DateTime.TryParse(Console.ReadLine(), out date2);
+                                        Console.WriteLine("location id:");
+                                        decimal locid;
+                                        bool a5 = decimal.TryParse(Console.ReadLine(), out locid);
+
+                                        User u = new User() { ID = id, FullName = fullname, Email = email, Phone_Number = phone, Birth_Date = date, Registration_Date = date2, Location_ID = locid };
+
+                                        er = logic.UpdateUser(mid, u);
+
+                                        DBHandler.Instance.Dispose();
+
+                                        if (a1 && a2 && a3 && a4 && a5 && a6 && er)
+                                        {
+                                            Console.WriteLine("Az adat módosítása sikeres volt.");
+                                        }
+                                        else
+                                        {
+                                            er = false;
+                                            Console.WriteLine("Az adatok nem helyesek. Szeretné mégegyszer megpróbálni ? y/n");
+                                            if (Console.ReadLine().ToLower() == "n")
+                                            {
+                                                er = true;
+                                            }
+                                        }
+                                    } while (!er);
                                 }
                                 else if (t == "s")
                                 {
+                                    bool er;
 
+                                    do
+                                    {
+                                        Console.WriteLine("Írja be az adatokat!");
+                                        Console.WriteLine("Módosítandó id");
+                                        decimal mid;
+                                        bool a7 = decimal.TryParse(Console.ReadLine(), out mid);
+                                        Console.WriteLine("ID:");
+                                        decimal id;
+                                        bool a1 = decimal.TryParse(Console.ReadLine(), out id);
+                                        Console.WriteLine("Transaction date: YYYY.MM.DD");
+                                        DateTime tdate;
+                                        bool a2 = DateTime.TryParse(Console.ReadLine(), out tdate);
+                                        Console.WriteLine("Product name:");
+                                        string prodname = Console.ReadLine();
+                                        Console.WriteLine("Price:");
+                                        decimal price;
+                                        bool a3 = decimal.TryParse(Console.ReadLine(), out price);
+                                        Console.WriteLine("Category:");
+                                        string cat = Console.ReadLine();
+                                        Console.WriteLine("Shipping cost:");
+                                        decimal shc;
+                                        bool a4 = decimal.TryParse(Console.ReadLine(), out shc);
+                                        Console.WriteLine("Seller id:");
+                                        decimal sid;
+                                        bool a5 = decimal.TryParse(Console.ReadLine(), out sid);
+                                        Console.WriteLine("Buyer id:");
+                                        decimal bid;
+                                        bool a6 = decimal.TryParse(Console.ReadLine(), out bid);
+
+                                        Sale s = new Sale() { ID = id, Transaction_Date = tdate, Product_Name = prodname, Price = price, Category = cat, Shipping_Cost = shc, Seller_ID = sid, Buyer_ID = bid };
+
+                                        er = logic.UpdateSale(mid, s);
+
+                                        DBHandler.Instance.Dispose();
+
+                                        if (a1 && a2 && a3 && a4 && a5 && a6 && a7 && er)
+                                        {
+                                            Console.WriteLine("Az adat módosítása sikeres volt.");
+                                        }
+                                        else
+                                        {
+                                            er = false;
+                                            Console.WriteLine("Az adatok nem helyesek. Szeretné mégegyszer megpróbálni ? y/n");
+                                            if (Console.ReadLine().ToLower() == "n")
+                                            {
+                                                er = true;
+                                            }
+                                        }
+                                    } while (!er);
                                 }
                                 else if (t == "l")
                                 {
+                                    bool er;
 
+                                    do
+                                    {
+                                        Console.WriteLine("Írja be az adatokat!");
+                                        Console.WriteLine("Módosítandó id");
+                                        decimal mid;
+                                        bool a4 = decimal.TryParse(Console.ReadLine(), out mid);
+                                        Console.WriteLine("ID:");
+                                        decimal id;
+                                        bool a1 = decimal.TryParse(Console.ReadLine(), out id);
+                                        Console.WriteLine("Country:");
+                                        string country = Console.ReadLine();
+                                        Console.WriteLine("Street:");
+                                        string street = Console.ReadLine();
+                                        Console.WriteLine("House number:");
+                                        decimal hnum;
+                                        bool a2 = decimal.TryParse(Console.ReadLine(), out hnum);
+                                        Console.WriteLine("Zip code:");
+                                        decimal zcode;
+                                        bool a3 = decimal.TryParse(Console.ReadLine(), out zcode);
+
+                                        Loc l = new Loc() { ID = id, Country = country, Street = street, House_Number = hnum, Zip_Code = zcode };
+
+                                        er = logic.UpdateLocation(mid, l);
+
+                                        DBHandler.Instance.Dispose();
+
+                                        if (a1 && a2 && a3 && a4 && er)
+                                        {
+                                            Console.WriteLine("Az adat módosítása sikeres volt.");
+                                        }
+                                        else
+                                        {
+                                            er = false;
+                                            Console.WriteLine("Az adatok nem helyesek. Szeretné mégegyszer megpróbálni ? y/n");
+                                            if (Console.ReadLine().ToLower() == "n")
+                                            {
+                                                er = true;
+                                            }
+                                        }
+                                    } while (!er);
                                 }
 
                                 break;
