@@ -25,5 +25,10 @@ namespace Webshop.Data
     
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
+
+        public override string ToString()
+        {
+            return Product_Name;
+        }
     }
 }

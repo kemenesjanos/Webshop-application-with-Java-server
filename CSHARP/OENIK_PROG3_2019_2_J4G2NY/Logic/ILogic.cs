@@ -146,7 +146,7 @@ namespace Webshop.Logic
         /// Select Sales where the Seller and the Buyer In The Same Town.
         /// </summary>
         /// <returns>IQueryable sales.</returns>
-        IQueryable<Sale> SelectSalesWhereTheSellerAndTheBuyerInTheSameTown();
+        IQueryable<Sale> SelectSalesWhereTheSellerAndTheBuyerInTheSameCountry();
 
         /// <summary>
         /// SelectUsersWhereTheyAreOnlyBuyers.
@@ -169,9 +169,9 @@ namespace Webshop.Logic
         /// <summary>
         /// HowMuchThePeopleOfThisCitySpentAVG.
         /// </summary>
-        /// <param name="cityName">City name.</param>
+        /// <param name="countryName">City name.</param>
         /// <returns>Avg spent in this city.</returns>
-        int HowMuchThePeopleOfThisCitySpentAVG(string cityName);
+        int HowMuchThePeopleOfThisCountrySpentAVG(string countryName);
 
         /// <summary>
         /// WhichCategoryPeopleInThisAgeGroupSpentTheMost.

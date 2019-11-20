@@ -17,7 +17,6 @@ namespace Webshop.Logic
     /// </summary>
     public class Logic : ILogic
     {
-        
         /// <summary>
         /// Repo helper.
         /// </summary>
@@ -33,6 +32,10 @@ namespace Webshop.Logic
             this.repoHelper = repositoryHelper;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Logic"/> class.
+        /// Empty ctor.
+        /// </summary>
         public Logic()
         {
             this.repoHelper = new RepositoryHelper(new LocRepository(), new SaleRepository(), new UserRepository());
@@ -45,7 +48,7 @@ namespace Webshop.Logic
         /// <returns>Bool success.</returns>
         public bool DeleteLocation(decimal id)
         {
-            if (this.GetLocByID(id) != null)
+            if (this.repoHelper.LocRepository.Get(id) != null)
             {
                 this.repoHelper.LocRepository.Delete(id);
                 return true;
@@ -63,7 +66,7 @@ namespace Webshop.Logic
         /// <returns>Bool success.</returns>
         public bool DeleteSale(decimal id)
         {
-            if (this.GetSaleByID(id) != null)
+            if (this.repoHelper.SaleRepository.Get(id) != null)
             {
                 this.repoHelper.SaleRepository.Delete(id);
                 return true;
@@ -81,7 +84,7 @@ namespace Webshop.Logic
         /// <returns>Bool success.</returns>
         public bool DeleteUser(decimal id)
         {
-            if (this.GetUserByID(id) != null)
+            if (this.repoHelper.UserRepository.Get(id) != null)
             {
                 this.repoHelper.UserRepository.Delete(id);
                 return true;
@@ -154,9 +157,16 @@ namespace Webshop.Logic
             return this.repoHelper.UserRepository.Get(id);
         }
 
-        public int HowMuchThePeopleOfThisCitySpentAVG(string cityName)
+        public int HowMuchThePeopleOfThisCountrySpentAVG(string cityName)
         {
-            throw new NotImplementedException();
+            if (this.GetAllLocations().Select(s => s.Country).Contains(cityName))
+            {
+                return (int)this.GetAllSales().Where(w => w.User1.Loc.Country == cityName).Select(s => s.Price).Average();
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         /// <summary>
@@ -170,7 +180,7 @@ namespace Webshop.Logic
         /// <returns>bool success.</returns>
         public bool InsertLocationData(decimal id, string country, string street, decimal house_number, decimal zip_code)
         {
-            if (this.GetLocByID(id) == null && zip_code < 10000 && zip_code > 999 && house_number > 0)
+            if (this.repoHelper.LocRepository.Get(id) == null && zip_code < 10000 && zip_code > 999 && house_number > 0)
             {
                 Loc l = new Loc()
                 {
@@ -204,8 +214,8 @@ namespace Webshop.Logic
         public bool InsertSalesData(decimal id, DateTime transaction_Date, string product_Name, decimal price, string category, decimal shipping_Cost, decimal sellerId, decimal buyerId)
         {
             ;
-            if (this.GetSaleByID(id) == null && shipping_Cost >= 0 && price >= 0 &&
-                this.GetUserByID(sellerId) != null && this.GetUserByID(buyerId) != null && "ruházat,elektronika,háztartási,élelmiszer,mezőgazdasági,papír - írószer,játék,gépjármű,egyéb".Split(',').Contains(category))
+            if (this.repoHelper.SaleRepository.Get(id) == null && shipping_Cost >= 0 && price >= 0 &&
+                this.repoHelper.UserRepository.Get(sellerId) != null && this.repoHelper.UserRepository.Get(buyerId) != null && "ruházat,elektronika,háztartási,élelmiszer,mezőgazdasági,papír - írószer,játék,gépjármű,egyéb".Split(',').Contains(category))
             {
                 Sale s = new Sale()
                 {
@@ -240,7 +250,7 @@ namespace Webshop.Logic
         /// <returns>Bool success.</returns>
         public bool InsertUsersData(decimal id, string fullName, string email, decimal phone_Number, DateTime birth_Date, DateTime registration_Date, decimal locId)
         {
-            if (this.GetUserByID(id) == null && phone_Number > 999999999 && this.GetLocByID(locId) != null)
+            if (this.repoHelper.UserRepository.Get(id) == null && phone_Number > 999999999 && this.repoHelper.LocRepository.Get(locId) != null)
             {
                 DBHandler.Instance.Dispose();
                 User u = new User()
@@ -253,7 +263,7 @@ namespace Webshop.Logic
                     Registration_Date = registration_Date,
                     Location_ID = locId,
 
-                    // Loc = this.GetLocByID(locId),
+                    // Loc = this.repoHelper.LocRepository.Get(locId),
                 };
                 this.repoHelper.UserRepository.Add(u);
                 return true;
@@ -264,24 +274,43 @@ namespace Webshop.Logic
             }
         }
 
-        public IQueryable<Sale> SelectSalesWhereTheSellerAndTheBuyerInTheSameTown()
+        /// <summary>
+        /// Select Sales Where The Seller And The Buyer In The Same Country.
+        /// </summary>
+        /// <returns>The sales.</returns>
+        public IQueryable<Sale> SelectSalesWhereTheSellerAndTheBuyerInTheSameCountry()
         {
-            throw new NotImplementedException();
+            return this.repoHelper.SaleRepository.GetAll().Where(x => x.User.Loc.Country == x.User1.Loc.Country).AsQueryable();
         }
 
+        /// <summary>
+        /// Select Users Where Is No Sale.
+        /// </summary>
+        /// <returns>the users.</returns>
         public IQueryable<User> SelectUsersWhereIsNoSale()
         {
-            throw new NotImplementedException();
+            return this.repoHelper.UserRepository.GetAll().Where(x => !this.repoHelper.SaleRepository.GetAll().Select(c => c.Seller_ID).Contains(x.ID) &&
+            !this.repoHelper.SaleRepository.GetAll().Select(c => c.Buyer_ID).Contains(x.ID)).AsQueryable();
         }
 
+        /// <summary>
+        /// Select Users Where They Are Only Buyers.
+        /// </summary>
+        /// <returns>The users.</returns>
         public IQueryable<User> SelectUsersWhereTheyAreOnlyBuyers()
         {
-            throw new NotImplementedException();
+            return this.repoHelper.UserRepository.GetAll().Where(x => !this.repoHelper.SaleRepository.GetAll().Select(c => c.Seller_ID).Contains(x.ID) &&
+            this.repoHelper.SaleRepository.GetAll().Select(c => c.Buyer_ID).Contains(x.ID)).AsQueryable();
         }
 
+        /// <summary>
+        /// Select Users Where They Are Only Sellers.
+        /// </summary>
+        /// <returns>The users.</returns>
         public IQueryable<User> SelectUsersWhereTheyAreOnlySellers()
         {
-            throw new NotImplementedException();
+            return this.repoHelper.UserRepository.GetAll().Where(x => this.repoHelper.SaleRepository.GetAll().Select(c => c.Seller_ID).Contains(x.ID) &&
+            !this.repoHelper.SaleRepository.GetAll().Select(c => c.Buyer_ID).Contains(x.ID)).AsQueryable();
         }
 
         /// <summary>
@@ -292,7 +321,7 @@ namespace Webshop.Logic
         /// <returns>Bool Success.</returns>
         public bool UpdateLocation(decimal oldid, Loc newLoc)
         {
-            if (this.GetLocByID(oldid) != null && this.GetLocByID(newLoc.ID) == null && newLoc.Zip_Code < 10000 && newLoc.Zip_Code > 999 && newLoc.House_Number > 0)
+            if (this.repoHelper.LocRepository.Get(oldid) != null && this.repoHelper.LocRepository.Get(newLoc.ID) == null && newLoc.Zip_Code < 10000 && newLoc.Zip_Code > 999 && newLoc.House_Number > 0)
             {
                 this.repoHelper.LocRepository.Delete(oldid);
                 this.repoHelper.LocRepository.Add(newLoc);
@@ -312,8 +341,8 @@ namespace Webshop.Logic
         /// <returns>Bool success.</returns>
         public bool UpdateSale(decimal oldid, Sale newSale)
         {
-            if (this.GetSaleByID(oldid) != null && this.GetSaleByID(newSale.ID) == null && newSale.Shipping_Cost >= 0 && newSale.Price >= 0 &&
-                this.GetUserByID((decimal)newSale.Seller_ID) != null && this.GetUserByID((decimal)newSale.Buyer_ID) != null && "ruházat,elektronika,háztartási,élelmiszer,mezőgazdasági,papír - írószer,játék,gépjármű,egyéb".Split(',').Contains(newSale.Category))
+            if (this.repoHelper.SaleRepository.Get(oldid) != null && this.repoHelper.SaleRepository.Get(newSale.ID) == null && newSale.Shipping_Cost >= 0 && newSale.Price >= 0 &&
+                this.repoHelper.UserRepository.Get((decimal)newSale.Seller_ID) != null && this.repoHelper.UserRepository.Get((decimal)newSale.Buyer_ID) != null && "ruházat,elektronika,háztartási,élelmiszer,mezőgazdasági,papír - írószer,játék,gépjármű,egyéb".Split(',').Contains(newSale.Category))
             {
                 this.repoHelper.SaleRepository.Delete(oldid);
                 this.repoHelper.SaleRepository.Add(newSale);
@@ -333,7 +362,7 @@ namespace Webshop.Logic
         /// <returns>bool success.</returns>
         public bool UpdateUser(decimal oldid, User newUser)
         {
-            if (this.GetUserByID(oldid) != null && this.GetUserByID(newUser.ID) == null && newUser.Phone_Number > 999999999 && this.GetLocByID((decimal)newUser.Location_ID) != null)
+            if (this.repoHelper.UserRepository.Get(oldid) != null && this.repoHelper.UserRepository.Get(newUser.ID) == null && newUser.Phone_Number > 999999999 && this.repoHelper.LocRepository.Get((decimal)newUser.Location_ID) != null)
             {
                 this.repoHelper.UserRepository.Delete(oldid);
                 this.repoHelper.UserRepository.Add(newUser);
@@ -345,9 +374,40 @@ namespace Webshop.Logic
             }
         }
 
+        /// <summary>
+        /// Which Category People In This Age Group Spent The Most.
+        /// </summary>
+        /// <param name="minAge">Min age.</param>
+        /// <param name="maxAge">Max age.</param>
+        /// <returns>The category.</returns>
         public string WhichCategoryPeopleInThisAgeGroupSpentTheMost(int minAge, int maxAge)
         {
-            throw new NotImplementedException();
+            if (minAge <= maxAge && minAge >= 0 && maxAge >= 0)
+            {
+                var agegroup = this.repoHelper.UserRepository.GetAll().Where(x => (DateTime.Today.Year - x.Birth_Date.Value.Year) >=  minAge &&
+                (DateTime.Today.Year - x.Birth_Date.Value.Year) <= maxAge).Select(h => h.ID);
+
+                var gr = this.repoHelper.SaleRepository.GetAll().Where(w => agegroup.Contains((decimal)w.Buyer_ID))
+                            .GroupBy(g => g.Category).OrderByDescending(o => o.Sum(s => s.Price));
+
+                if (!(gr.FirstOrDefault() is null))
+                {
+                    var cat = gr.FirstOrDefault().FirstOrDefault().Category;
+
+                    var price = gr.FirstOrDefault().Sum(s => s.Price);
+
+                    return minAge + " és " + maxAge + " éves kor között a(z) " +
+                        cat + " kategóriára költöttek a legtöbbet, " + price + " ft ot.";
+                }
+                else
+                {
+                    return "Nincs a korosztályban vásárló.";
+                }
+            }
+            else
+            {
+                return "Helytelen paraméterek.";
+            }
         }
     }
 }

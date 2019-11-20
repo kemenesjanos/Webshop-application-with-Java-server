@@ -29,12 +29,15 @@ namespace Program
             {
                 Console.Clear();
                 Console.WriteLine("Mit szeretne tenni ? \n");
-                Console.WriteLine("L: kilistázni \nH: hozzáadni \nT: törölni \nM: módosítani ");
-                Console.WriteLine("U: Ugyanabban a városban lakik a vevő és az eladó");
-                Console.WriteLine("V: Városokban mennyi a vásárolt termékek átlaga");
-                Console.WriteLine("K: az egyes korosztályok melyik kategóriákra költöttek a legtöbbet");
-                Console.WriteLine("R: részesedési mutató kérése egy termékre");
-                Console.WriteLine("X: kilépni");
+                Console.WriteLine("L: Kilistázni \nH: Hozzáadni \nT: Törölni \nM: Módosítani ");
+                Console.WriteLine("U: Vásárlások, ahol ugyanabban az országban lakik a vevő és az eladó");
+                Console.WriteLine("N: Azok a felhasználók akik nem voltak még se vevők, se eladók");
+                Console.WriteLine("Q: Azok a felhasználók akik eddig csak vásároltak");
+                Console.WriteLine("W: Azok a felhasználók akik eddig csak eladtak");
+                Console.WriteLine("V: A megadott országban mennyi a vásárolt termékek átlaga");
+                Console.WriteLine("K: A megadott korosztályok közül melyik kategóriára költöttek a legtöbbet");
+                Console.WriteLine("R: Részesedési mutató kérése egy termékre");
+                Console.WriteLine("X: Kilépés");
                 v = Console.ReadLine().ToLower();
                 Console.Clear();
                 string t;
@@ -477,22 +480,58 @@ namespace Program
                 }
                 else if (v == "u")
                 {
-                    Console.WriteLine("Ez még nincs kész");
+                    Display(
+                        logic.SelectSalesWhereTheSellerAndTheBuyerInTheSameCountry(),
+                        "Vásárlások, ahol ugyanabban az országban lakik a vevő és az eladó:");
+                }
+                else if (v == "n")
+                {
+                    Display(logic.SelectUsersWhereIsNoSale(), "Azok a felhasználók akik nem voltak még se vevők, se eladók:");
+                }
+                else if (v == "q")
+                {
+                    Display(logic.SelectUsersWhereTheyAreOnlyBuyers(), "Azok a felhasználók akik eddig csak vásároltak:");
+                }
+                else if (v == "w")
+                {
+                    Display(logic.SelectUsersWhereTheyAreOnlySellers(), "Azok a felhasználók akik eddig csak eladtak:");
                 }
                 else if (v == "v")
                 {
-                    Console.WriteLine("Ez még nincs kész");
+                    Console.WriteLine("Adja meg az ország nevét:");
+                    string Country = Console.ReadLine();
+                    int avg = logic.HowMuchThePeopleOfThisCountrySpentAVG(Country);
+                    if (avg == -1)
+                    {
+                        Console.WriteLine("Nem lakik ilyen nevű országban felhasználó.");
+                    }
+                    else
+                    {
+                        Console.WriteLine(avg + "- et költenek átlagosan ebben az országban.");
+                    }
                 }
                 else if (v == "k")
                 {
-                    Console.WriteLine("Ez még nincs kész");
+                    Console.WriteLine("Adja meg az alábbi adatokat:");
+                    Console.WriteLine("A korosztály alsó határa: ");
+                    string min = Console.ReadLine();
+                    Console.WriteLine("A korosztály felső határa: ");
+                    string max = Console.ReadLine();
+                    if (int.TryParse(min, out int minage) && int.TryParse(max, out int maxage))
+                    {
+                        Console.WriteLine(logic.WhichCategoryPeopleInThisAgeGroupSpentTheMost(minage, maxage));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Hibás adatok.");
+                    }
                 }
                 else if (v == "r")
                 {
                     Console.WriteLine("Ez még nincs kész");
                 }
 
-                if (v != "x")
+                if ("lhtmunkwvkr".Contains(v))
                 {
                     Console.ReadKey();
                 }
@@ -500,6 +539,19 @@ namespace Program
                 Console.Clear();
             }
             while (v != "x");
+        }
+
+        public static void Display<T>(IEnumerable<T> list, string description)
+        {
+            Console.Clear();
+            Console.WriteLine(description);
+            Console.WriteLine();
+            foreach (T item in list)
+            {
+                Console.WriteLine(item.ToString());
+            }
+
+            Console.WriteLine();
         }
     }
 }
