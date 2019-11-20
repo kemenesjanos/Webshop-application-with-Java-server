@@ -2,41 +2,24 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Webshop.Data;
-
 namespace Webshop.Repository
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Webshop.Data;
+
     /// <summary>
     /// SaleRepository.
     /// </summary>
     public class SaleRepository : IRepository<Sale>
     {
-        ///// <summary>
-        ///// WebshopDBEntities db.
-        ///// </summary>
-        //private readonly WebshopDBEntities new DBHandler().webshopDBEntities;
-
-        ///// <summary>
-        ///// Initializes a new instance of the <see cref="SaleRepository"/> class.
-        ///// Ctor.
-        ///// </summary>
-        //public SaleRepository()
-        //{
-        //    new DBHandler().webshopDBEntities = new WebshopDBEntities();
-        //}
-
         /// <summary>
         /// GetAll().
         /// </summary>
         /// <returns>IQueryable Users.</returns>
         public IEnumerable<Sale> GetAll()
         {
-            return new DBHandler().webshopDBEntities.Sales;
+            return new DBHandler().WebshopDBEntities.Sales;
         }
 
         /// <summary>
@@ -46,8 +29,8 @@ namespace Webshop.Repository
         public void Add(Sale obj)
         {
             DBHandler a = new DBHandler();
-            a.webshopDBEntities.Sales.Add(obj);
-            a.webshopDBEntities.SaveChanges();
+            a.WebshopDBEntities.Sales.Add(obj);
+            a.WebshopDBEntities.SaveChanges();
             DBHandler.Instance.Dispose();
         }
 
@@ -58,9 +41,9 @@ namespace Webshop.Repository
         public void Delete(decimal id)
         {
             DBHandler a = new DBHandler();
-            var v = a.webshopDBEntities.Sales.Where(u => u.ID == id).FirstOrDefault();
-            a.webshopDBEntities.Sales.Remove(v);
-            a.webshopDBEntities.SaveChanges();
+            var v = a.WebshopDBEntities.Sales.Where(u => u.ID == id).FirstOrDefault();
+            a.WebshopDBEntities.Sales.Remove(v);
+            a.WebshopDBEntities.SaveChanges();
             DBHandler.Instance.Dispose();
         }
 
@@ -69,9 +52,9 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the object.</param>
         /// <returns>The required object.</returns>
-        public Sale Get(decimal id)
+        public Sale GetByID(decimal id)
         {
-            return new DBHandler().webshopDBEntities.Sales.FirstOrDefault(t => t.ID == id);
+            return new DBHandler().WebshopDBEntities.Sales.FirstOrDefault(t => t.ID == id);
         }
 
         /// <summary>

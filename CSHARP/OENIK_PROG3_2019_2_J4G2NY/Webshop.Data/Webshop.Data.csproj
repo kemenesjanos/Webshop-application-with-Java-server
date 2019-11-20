@@ -114,6 +114,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WebshopDBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="stylecop.json" />
     <None Include="WebshopDBEntities.edmx.diagram">
       <DependentUpon>WebshopDBEntities.edmx</DependentUpon>
     </None>

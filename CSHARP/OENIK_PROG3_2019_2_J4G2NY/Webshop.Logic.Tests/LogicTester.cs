@@ -2,19 +2,16 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using NUnit.Framework;
-using Webshop.Data;
-using Webshop.Logic;
-using Webshop.Repository;
-
 namespace Webshop.Logic.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Moq;
+    using NUnit.Framework;
+    using Webshop.Data;
+    using Webshop.Repository;
+
     /// <summary>
     /// The tester class.
     /// </summary>
@@ -104,7 +101,7 @@ namespace Webshop.Logic.Tests
         /// Test get by id.
         /// </summary>
         [Test]
-        public void Test_GetByID()
+        public void Test_GetByiD()
         {
             RepositoryHelper mockrepoHelper;
             Mock<IRepository<User>> mockRepoUsers;
@@ -120,9 +117,9 @@ namespace Webshop.Logic.Tests
 
             mockLogic = new Logic(mockrepoHelper);
 
-            Loc test = mockLogic.GetLocByID(1);
+            Loc test = mockLogic.GetLocById(1);
 
-            mockRepoLoc.Verify(x => x.Get(It.IsAny<decimal>()), Times.Once);
+            mockRepoLoc.Verify(x => x.GetByID(It.IsAny<decimal>()), Times.Once);
         }
 
         /// <summary>

@@ -2,16 +2,14 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Webshop.Data;
-using Webshop.Logic;
-
 namespace Program
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Webshop.Data;
+    using Webshop.Logic;
+
     /// <summary>
     /// The MainProgram.
     /// </summary>
@@ -21,7 +19,7 @@ namespace Program
         /// Main.
         /// </summary>
         /// <param name="args">args.</param>
-        public static void Main(string[] args)
+        public static void Main()
         {
             Logic logic = new Logic();
             string v;
@@ -130,7 +128,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
 
                                     Console.WriteLine();
                                 }
@@ -181,7 +180,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
                                 }
                                 else if (t == "l")
                                 {
@@ -221,7 +221,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
                                 }
 
                                 break;
@@ -254,7 +255,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
                                 }
                                 else if (t == "s")
                                 {
@@ -284,7 +286,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
                                 }
                                 else if (t == "l")
                                 {
@@ -314,7 +317,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
                                 }
 
                                 break;
@@ -369,7 +373,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
                                 }
                                 else if (t == "s")
                                 {
@@ -423,7 +428,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
                                 }
                                 else if (t == "l")
                                 {
@@ -468,7 +474,8 @@ namespace Program
                                                 er = true;
                                             }
                                         }
-                                    } while (!er);
+                                    }
+                                    while (!er);
                                 }
 
                                 break;
@@ -499,8 +506,7 @@ namespace Program
                 else if (v == "v")
                 {
                     Console.WriteLine("Adja meg az ország nevét:");
-                    string Country = Console.ReadLine();
-                    int avg = logic.HowMuchThePeopleOfThisCountrySpentAVG(Country);
+                    int avg = logic.HowMuchThePeopleOfThisCountrySpentAvg(Console.ReadLine());
                     if (avg == -1)
                     {
                         Console.WriteLine("Nem lakik ilyen nevű országban felhasználó.");
@@ -541,6 +547,12 @@ namespace Program
             while (v != "x");
         }
 
+        /// <summary>
+        /// Display some result.
+        /// </summary>
+        /// <typeparam name="T">Type of the object for display.</typeparam>
+        /// <param name="list">Results.</param>
+        /// <param name="description">Description.</param>
         public static void Display<T>(IEnumerable<T> list, string description)
         {
             Console.Clear();

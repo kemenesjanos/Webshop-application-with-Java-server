@@ -2,15 +2,13 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Webshop.Data;
-
 namespace Webshop.Logic
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Webshop.Data;
+
     /// <summary>
     /// ILogic.
     /// </summary>
@@ -24,10 +22,10 @@ namespace Webshop.Logic
         /// <param name="id">id.</param>
         /// <param name="country">country.</param>
         /// <param name="street">street.</param>
-        /// <param name="house_number">house number.</param>
-        /// <param name="zip_code">zip code.</param>
+        /// <param name="house_Number">house number.</param>
+        /// <param name="zip_Code">zip code.</param>
         /// <returns>If the params are good bool.</returns>
-        bool InsertLocationData(decimal id, string country, string street, decimal house_number, decimal zip_code);
+        bool InsertLocationData(decimal id, string country, string street, decimal house_Number, decimal zip_Code);
 
         /// <summary>
         /// Insert data to Sales.
@@ -61,21 +59,21 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>Location.</returns>
-        Loc GetLocByID(decimal id);
+        Loc GetLocById(decimal id);
 
         /// <summary>
         /// Get sale by id.
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>Sale.</returns>
-        Sale GetSaleByID(decimal id);
+        Sale GetSaleById(decimal id);
 
         /// <summary>
         /// Get user by id.
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>user.</returns>
-        User GetUserByID(decimal id);
+        User GetUserById(decimal id);
 
         /// <summary>
         /// Get all Locations.
@@ -167,11 +165,11 @@ namespace Webshop.Logic
         IQueryable<User> SelectUsersWhereIsNoSale();
 
         /// <summary>
-        /// HowMuchThePeopleOfThisCitySpentAVG.
+        /// HowMuchThePeopleOfThisCitySpentAvg.
         /// </summary>
         /// <param name="countryName">City name.</param>
         /// <returns>Avg spent in this city.</returns>
-        int HowMuchThePeopleOfThisCountrySpentAVG(string countryName);
+        int HowMuchThePeopleOfThisCountrySpentAvg(string countryName);
 
         /// <summary>
         /// WhichCategoryPeopleInThisAgeGroupSpentTheMost.

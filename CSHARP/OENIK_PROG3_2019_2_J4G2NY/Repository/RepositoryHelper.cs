@@ -2,15 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Webshop.Data;
-
 namespace Webshop.Repository
 {
+    using Webshop.Data;
+
     /// <summary>
     /// Helps the repository's usage.
     /// </summary>
@@ -24,6 +19,9 @@ namespace Webshop.Repository
         /// Initializes a new instance of the <see cref="RepositoryHelper"/> class.
         /// Ctor.
         /// </summary>
+        /// <param name="locRepository">loc repository.</param>
+        /// <param name="saleRepository">Sale repository.</param>
+        /// <param name="userRepository">User repository.</param>
         public RepositoryHelper(IRepository<Loc> locRepository, IRepository<Sale> saleRepository, IRepository<User> userRepository)
         {
             this.locRepo = locRepository;
@@ -54,7 +52,5 @@ namespace Webshop.Repository
         {
             get { return this.userRepo; }
         }
-
-        
     }
 }
