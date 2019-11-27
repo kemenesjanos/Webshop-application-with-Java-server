@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "J4G2NY_Webshop\Program.csproj", "{5AD8E4EF-3D49-426C-85F7-C072882178F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.Program", "J4G2NY_Webshop\Webshop.Program.csproj", "{5AD8E4EF-3D49-426C-85F7-C072882178F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.Repository", "Repository\Webshop.Repository.csproj", "{28A69706-B31C-4C06-97DC-9A9010F0E4A3}"
 EndProject
