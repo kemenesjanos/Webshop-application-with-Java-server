@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5AD8E4EF-3D49-426C-85F7-C072882178F6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>J4G2NY_Webshop</RootNamespace>
-    <AssemblyName>J4G2NY_Webshop</AssemblyName>
+    <RootNamespace>Webshop.Program</RootNamespace>
+    <AssemblyName>Webshop.Program</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
