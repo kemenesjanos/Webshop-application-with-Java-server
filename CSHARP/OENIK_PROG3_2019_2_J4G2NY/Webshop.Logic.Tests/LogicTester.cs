@@ -142,7 +142,7 @@ namespace Webshop.Logic.Tests
 
             mockLogic = new Logic(mockrepoHelper);
 
-            bool test = mockLogic.DeleteLocation(10);
+            bool test = mockLogic.DeleteUser(10);
 
             Assert.That(test == false);
         }
