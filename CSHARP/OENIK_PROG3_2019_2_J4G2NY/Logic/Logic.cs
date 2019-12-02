@@ -7,6 +7,8 @@ namespace Webshop.Logic
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net;
+    using System.Text;
     using Webshop.Data;
     using Webshop.Repository;
 
@@ -15,6 +17,11 @@ namespace Webshop.Logic
     /// </summary>
     public class Logic : ILogic
     {
+        /// <summary>
+        /// url for java connection.
+        /// </summary>
+        public const string Javaurl = "http://localhost:8080/oenik_prog3_2019_2_j4g2ny/index.jsp";
+
         /// <summary>
         /// Repo helper.
         /// </summary>
@@ -93,9 +100,34 @@ namespace Webshop.Logic
             }
         }
 
-        public int EquityRatioRequestJava(int price)
+        /// <summary>
+        /// Equity Ratio Request from Java server.
+        /// </summary>
+        /// <param name="price">Offered price.</param>
+        /// <returns>Offered equity.</returns>
+        public int ShareholdingRequestJava(int price)
         {
-            throw new NotImplementedException();
+            WebClient client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+            string response = "aaa";
+            try
+            {
+                response = client.DownloadString(Javaurl +
+                "?price=" + price);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+
+            int er;
+            bool e = int.TryParse(response, out er);
+            if (e)
+            {
+                return er;
+            }
+
+            return -1;
         }
 
         /// <summary>

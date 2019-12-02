@@ -184,6 +184,6 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="price">Price.</param>
         /// <returns>Equity Ratio.</returns>
-        int EquityRatioRequestJava(int price);
+        int ShareholdingRequestJava(int price);
     }
 }

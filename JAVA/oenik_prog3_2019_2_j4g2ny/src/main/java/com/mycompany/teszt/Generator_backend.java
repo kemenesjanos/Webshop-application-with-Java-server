@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.oenik_prog3_2019_2j4g2ny;
+package com.mycompany.teszt;
 
 import java.util.Random;
 
@@ -17,12 +17,12 @@ public class Generator_backend {
     private static double GenRandom()
     {
         double max = 5.0;
-        return r.nextDouble()*max;
+        return r.nextDouble()/max;
     }
     
     public static int getObj(int price) 
     {
-        int finalprice =  (int)Math.round(price * GenRandom());
+        int finalprice =  (int)Math.round((double)price * GenRandom());
         return finalprice;
     }
 }

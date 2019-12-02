@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.oenik_prog3_2019_2j4g2ny;
+package com.mycompany.teszt;
 
 import java.io.IOException;
 import java.io.PrintWriter;

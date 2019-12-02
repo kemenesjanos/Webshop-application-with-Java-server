@@ -1,7 +1,6 @@
 ﻿// <copyright file="Program.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
 namespace Program
 {
     using System;
@@ -534,10 +533,28 @@ namespace Program
                 }
                 else if (v == "r")
                 {
-                    Console.WriteLine("Ez még nincs kész");
+                    Console.WriteLine("Írjon be egy árat:");
+                    int price;
+                    bool e = int.TryParse(Console.ReadLine(), out price);
+                    if (e && price >= 0)
+                    {
+                        int er = logic.ShareholdingRequestJava(price);
+                        if (er != -1)
+                        {
+                            Console.WriteLine("Az ajánlott részesedési összeg: " + er);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Hiba adódott a java szerverrel.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Hibás adat.");
+                    }
                 }
 
-                if ("lhtmunkwvkr".Contains(v))
+                if ("lhtmunqwvkr".Contains(v))
                 {
                     Console.ReadKey();
                 }

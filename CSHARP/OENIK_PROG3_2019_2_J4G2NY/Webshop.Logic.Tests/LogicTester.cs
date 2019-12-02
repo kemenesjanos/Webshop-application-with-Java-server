@@ -217,7 +217,6 @@ namespace Webshop.Logic.Tests
 
             Assert.That(mlist.Count() == 1);
             Assert.That(mlist[0].FullName == "AA");
-
         }
 
         /// <summary>
@@ -356,7 +355,6 @@ namespace Webshop.Logic.Tests
             mockLogic = new Logic(mockrepoHelper);
             Assert.That(mockLogic.WhichCategoryPeopleInThisAgeGroupSpentTheMost(5, 50) == "5 és 50 éves kor között a(z) papír-írószer kategóriára költöttek a legtöbbet, 6000 ft ot.");
             Assert.That(mockLogic.WhichCategoryPeopleInThisAgeGroupSpentTheMost(18, 20) == "18 és 20 éves kor között a(z) egyéb kategóriára költöttek a legtöbbet, 4000 ft ot.");
-
         }
     }
 }
