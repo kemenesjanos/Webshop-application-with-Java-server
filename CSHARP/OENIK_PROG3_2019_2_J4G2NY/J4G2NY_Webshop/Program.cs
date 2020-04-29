@@ -66,6 +66,7 @@ namespace Program
                                     foreach (Sale item in list)
                                     {
                                         Console.WriteLine(item.Product_Name);
+                                        
                                     }
 
                                     DBHandler.Instance.Dispose();
