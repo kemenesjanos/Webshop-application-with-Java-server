@@ -13,7 +13,7 @@
           <Property Name="Country" Type="varchar" MaxLength="20" />
           <Property Name="Street" Type="varchar" MaxLength="40" />
           <Property Name="House_Number" Type="numeric" Precision="4" Scale="0" />
-          <Property Name="Zip_Code" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="Zip_Code" Type="numeric" Precision="10" Scale="5" />
         </EntityType>
         <EntityType Name="Sales">
           <Key>
@@ -106,7 +106,7 @@
           <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Street" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="House_Number" Type="Decimal" Precision="4" Scale="0" />
-          <Property Name="Zip_Code" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="Zip_Code" Type="Decimal" Precision="10" Scale="5" />
           <NavigationProperty Name="Users" Relationship="Self.location_fk" FromRole="Loc" ToRole="Users" />
         </EntityType>
         <EntityType Name="Sales">

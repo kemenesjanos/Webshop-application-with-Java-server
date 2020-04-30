@@ -163,8 +163,8 @@
       <LastGenOutput>WebshopDBEntities.cs</LastGenOutput>
     </Content>
     <Content Include="WebshopDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>WebshopDB.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

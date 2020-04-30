@@ -6,7 +6,7 @@ CREATE TABLE Loc( ID NUMERIC(10),
 Country VARCHAR(20),
 Street VARCHAR(40),
 House_Number NUMERIC(4),
-Zip_Code NUMERIC(4),
+Zip_Code NUMERIC(6,4),
 CONSTRAINT location_pk PRIMARY KEY(ID)
 );
 

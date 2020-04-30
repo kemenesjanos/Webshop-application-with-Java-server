@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\admin\Documents\oenik_prog3_2019_2_j4g2ny\CSHARP\OENIK_PROG3_2019_2_J4G2NY\Webshop.Data\WebshopDBEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\admin\Documents\oenik_prog4hf_2020_1_j4g2ny\CSHARP\OENIK_PROG3_2019_2_J4G2NY\Webshop.Data\WebshopDBEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

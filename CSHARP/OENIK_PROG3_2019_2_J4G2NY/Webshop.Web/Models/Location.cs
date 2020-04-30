@@ -30,7 +30,6 @@ namespace Webshop.Web.Models
 
         [Display(Name = "Zip_Code")]
         [Required]
-        [Range(1000, 10000)]
         public Nullable<decimal> Zip_Code { get; set; }
     }
 }

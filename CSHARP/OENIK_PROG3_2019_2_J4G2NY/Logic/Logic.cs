@@ -355,7 +355,7 @@ namespace Webshop.Logic
         /// <returns>Bool Success.</returns>
         public bool UpdateLocation(decimal oldid, Loc newLoc)
         {
-            if (this.repoHelper.LocRepository.GetByID(oldid) != null && this.repoHelper.LocRepository.GetByID(newLoc.ID) == null && newLoc.Zip_Code < 10000 && newLoc.Zip_Code > 999 && newLoc.House_Number > 0)
+            if (this.repoHelper.LocRepository.GetByID(oldid) != null/* && this.repoHelper.LocRepository.GetByID(newLoc.ID) == null*/ && newLoc.Zip_Code < 10000 && newLoc.Zip_Code > 999 && newLoc.House_Number > 0)
             {
                 this.repoHelper.LocRepository.Delete(oldid);
                 this.repoHelper.LocRepository.Add(newLoc);
