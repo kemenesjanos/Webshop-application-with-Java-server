@@ -1,0 +1,27 @@
+﻿@model Webshop.Web.Models.Location
+
+<h2>Edit one Location</h2>
+
+@using (Html.BeginForm("Edit", "Locations"))
+{
+    @Html.ValidationSummary()
+
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.ID)
+    @Html.Hidden("editAction", ViewData["editAction"].ToString());
+
+    <div class="editor-label">@Html.LabelFor(m => m.Country)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Country)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Zip_Code)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Zip_Code)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Street)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Street)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.House_Number)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.House_Number)</div>
+
+    <input type="submit" value="SEND" />
+}

@@ -12,8 +12,8 @@ namespace Webshop.Repository
     public class RepositoryHelper
     {
         private readonly IRepository<Loc> locRepo;
-        private readonly IRepository<Sale> saleRepo;
-        private readonly IRepository<User> userRepo;
+        private readonly IRepository<Sales> saleRepo;
+        private readonly IRepository<Users> userRepo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryHelper"/> class.
@@ -22,7 +22,7 @@ namespace Webshop.Repository
         /// <param name="locRepository">loc repository.</param>
         /// <param name="saleRepository">Sale repository.</param>
         /// <param name="userRepository">User repository.</param>
-        public RepositoryHelper(IRepository<Loc> locRepository, IRepository<Sale> saleRepository, IRepository<User> userRepository)
+        public RepositoryHelper(IRepository<Loc> locRepository, IRepository<Sales> saleRepository, IRepository<Users> userRepository)
         {
             this.locRepo = locRepository;
             this.saleRepo = saleRepository;
@@ -40,7 +40,7 @@ namespace Webshop.Repository
         /// <summary>
         /// Gets Sale repository.
         /// </summary>
-        public virtual IRepository<Sale> SaleRepository
+        public virtual IRepository<Sales> SaleRepository
         {
             get { return this.saleRepo; }
         }
@@ -48,7 +48,7 @@ namespace Webshop.Repository
         /// <summary>
         /// Gets User repository.
         /// </summary>
-        public virtual IRepository<User> UserRepository
+        public virtual IRepository<Users> UserRepository
         {
             get { return this.userRepo; }
         }

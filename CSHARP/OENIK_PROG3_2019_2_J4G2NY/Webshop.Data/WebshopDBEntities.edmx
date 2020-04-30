@@ -109,7 +109,7 @@
           <Property Name="Zip_Code" Type="Decimal" Precision="4" Scale="0" />
           <NavigationProperty Name="Users" Relationship="Self.location_fk" FromRole="Loc" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Sale">
+        <EntityType Name="Sales">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -121,10 +121,10 @@
           <Property Name="Price" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="Category" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Shipping_Cost" Type="Decimal" Precision="10" Scale="0" />
-          <NavigationProperty Name="User" Relationship="Self.buyer_fk" FromRole="Sales" ToRole="Users" />
-          <NavigationProperty Name="User1" Relationship="Self.seller_fk" FromRole="Sales" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.buyer_fk" FromRole="Sales" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.seller_fk" FromRole="Sales" ToRole="Users" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -141,7 +141,7 @@
         </EntityType>
         <Association Name="location_fk">
           <End Role="Loc" Type="Self.Loc" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Loc">
               <PropertyRef Name="ID" />
@@ -152,8 +152,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="buyer_fk">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="ID" />
@@ -164,8 +164,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="seller_fk">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="ID" />
@@ -176,11 +176,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="WebshopDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Locs" EntityType="Self.Loc" />
-          <EntitySet Name="Sales" EntityType="Self.Sale" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Loc" EntityType="Self.Loc" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="location_fk" Association="Self.location_fk">
-            <End Role="Loc" EntitySet="Locs" />
+            <End Role="Loc" EntitySet="Loc" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="buyer_fk" Association="Self.buyer_fk">
@@ -198,7 +198,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="WebshopDBModelStoreContainer" CdmEntityContainer="WebshopDBEntities">
-          <EntitySetMapping Name="Locs">
+          <EntitySetMapping Name="Loc">
             <EntityTypeMapping TypeName="WebshopDBModel.Loc">
               <MappingFragment StoreEntitySet="Loc">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -210,7 +210,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sales">
-            <EntityTypeMapping TypeName="WebshopDBModel.Sale">
+            <EntityTypeMapping TypeName="WebshopDBModel.Sales">
               <MappingFragment StoreEntitySet="Sales">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Seller_ID" ColumnName="Seller_ID" />
@@ -224,7 +224,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="WebshopDBModel.User">
+            <EntityTypeMapping TypeName="WebshopDBModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -250,7 +250,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

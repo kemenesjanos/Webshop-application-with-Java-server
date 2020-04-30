@@ -12,7 +12,7 @@ namespace Webshop.Web.Models
         {
             var config = new MapperConfiguration(cfg =>
             {
-                //cfg.CreateMap<Webshop.>
+                cfg.CreateMap<Webshop.Data.Loc, Webshop.Web.Models.Location>();
             });
             return config.CreateMapper();
         }

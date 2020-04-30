@@ -19,7 +19,7 @@ Birth_Date DATE,
 Registration_Date DATE,
 CONSTRAINT users_pk PRIMARY KEY(ID),
 CONSTRAINT location_fk FOREIGN KEY(Location_ID) REFERENCES
-Loc(ID),
+Loc(ID) ON DELETE SET NULL,
 CONSTRAINT chk_phone CHECK( LEN(Phone_Number) >= 10)
 );
 

@@ -19,7 +19,7 @@ namespace Webshop.Repository
         /// <returns>IQueryable Users.</returns>
         public IEnumerable<Loc> GetAll()
         {
-            return new DBHandler().WebshopDBEntities.Locs;
+            return new DBHandler().WebshopDBEntities.Loc;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Webshop.Repository
         public void Add(Loc obj)
         {
             DBHandler a = new DBHandler();
-            a.WebshopDBEntities.Locs.Add(obj);
+            a.WebshopDBEntities.Loc.Add(obj);
             a.WebshopDBEntities.SaveChanges();
             DBHandler.Instance.Dispose();
         }
@@ -41,8 +41,8 @@ namespace Webshop.Repository
         public void Delete(decimal id)
         {
             DBHandler a = new DBHandler();
-            var v = a.WebshopDBEntities.Locs.Where(u => u.ID == id).FirstOrDefault();
-            a.WebshopDBEntities.Locs.Remove(v);
+            var v = a.WebshopDBEntities.Loc.Where(u => u.ID == id).FirstOrDefault();
+            a.WebshopDBEntities.Loc.Remove(v);
             a.WebshopDBEntities.SaveChanges();
             DBHandler.Instance.Dispose();
         }
@@ -54,7 +54,7 @@ namespace Webshop.Repository
         /// <returns>The required object.</returns>
         public Loc GetByID(decimal id)
         {
-            return new DBHandler().WebshopDBEntities.Locs.Where(x => x.ID == id).FirstOrDefault();
+            return new DBHandler().WebshopDBEntities.Loc.Where(x => x.ID == id).FirstOrDefault();
         }
 
         /// <summary>

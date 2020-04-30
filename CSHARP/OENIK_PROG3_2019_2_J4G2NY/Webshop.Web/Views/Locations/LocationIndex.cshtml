@@ -1,0 +1,12 @@
+﻿@model Webshop.Web.Models.LocationsViewModel
+@{
+    ViewBag.Title = "Locations Index";
+}
+
+<h2>Locations Index</h2>
+
+<p style="color:red; font-weight: bold">@TempData["editResult"]</p>
+
+@Html.Partial("LocationEdit", Model.EditedLocation)
+@Html.Partial("LocationList", Model.ListOfLocations)
+

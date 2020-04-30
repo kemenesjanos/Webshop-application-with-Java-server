@@ -11,13 +11,13 @@ namespace Webshop.Repository
     /// <summary>
     /// SaleRepository.
     /// </summary>
-    public class SaleRepository : IRepository<Sale>
+    public class SaleRepository : IRepository<Sales>
     {
         /// <summary>
         /// GetAll().
         /// </summary>
         /// <returns>IQueryable Users.</returns>
-        public IEnumerable<Sale> GetAll()
+        public IEnumerable<Sales> GetAll()
         {
             return new DBHandler().WebshopDBEntities.Sales;
         }
@@ -26,7 +26,7 @@ namespace Webshop.Repository
         /// Add().
         /// </summary>
         /// <param name="obj">Object for add.</param>
-        public void Add(Sale obj)
+        public void Add(Sales obj)
         {
             DBHandler a = new DBHandler();
             a.WebshopDBEntities.Sales.Add(obj);
@@ -52,7 +52,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="id">Id of the object.</param>
         /// <returns>The required object.</returns>
-        public Sale GetByID(decimal id)
+        public Sales GetByID(decimal id)
         {
             return new DBHandler().WebshopDBEntities.Sales.FirstOrDefault(t => t.ID == id);
         }
@@ -62,7 +62,7 @@ namespace Webshop.Repository
         /// </summary>
         /// <param name="oldid">The old object's ID.</param>
         /// <param name="newobject">The new object.</param>
-        public void Update(decimal oldid, Sale newobject)
+        public void Update(decimal oldid, Sales newobject)
         {
             this.Delete(oldid);
             this.Add(newobject);

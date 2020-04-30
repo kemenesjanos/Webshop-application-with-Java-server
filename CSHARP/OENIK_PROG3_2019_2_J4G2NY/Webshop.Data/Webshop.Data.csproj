@@ -15,6 +15,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -85,10 +85,15 @@
       <DependentUpon>WebshopDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sale.cs">
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Sales.cs">
       <DependentUpon>WebshopDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
+    <Compile Include="Users.cs">
       <DependentUpon>WebshopDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="WebshopDBEntities.Context.cs">
@@ -111,11 +116,15 @@
     <None Include="App.Config" />
     <None Include="oenik.ruleset" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="stylecop.json" />
     <EntityDeploy Include="WebshopDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WebshopDBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="stylecop.json" />
     <None Include="WebshopDBEntities.edmx.diagram">
       <DependentUpon>WebshopDBEntities.edmx</DependentUpon>
     </None>
@@ -123,25 +132,6 @@
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="WebshopDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="WebshopDBEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>WebshopDBEntities.Context.cs</LastGenOutput>
-      <DependentUpon>WebshopDBEntities.edmx</DependentUpon>
-    </Content>
-    <Content Include="WebshopDBEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WebshopDBEntities.edmx</DependentUpon>
-      <LastGenOutput>WebshopDBEntities.cs</LastGenOutput>
-    </Content>
-    <Content Include="WebshopDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>WebshopDB.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -157,6 +147,25 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WebshopDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebshopDBEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebshopDBEntities.edmx</DependentUpon>
+      <LastGenOutput>WebshopDBEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="WebshopDBEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebshopDBEntities.edmx</DependentUpon>
+      <LastGenOutput>WebshopDBEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="WebshopDB_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>WebshopDB.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

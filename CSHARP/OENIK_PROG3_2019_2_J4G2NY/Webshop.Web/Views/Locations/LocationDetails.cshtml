@@ -1,0 +1,32 @@
+﻿@model Webshop.Web.Models.Location
+@{
+    ViewBag.Title = "LocationDetails";
+}
+
+<h2>Datasheet of one Location</h2>
+
+@Html.ActionLink("Back to the list", "Index");
+<table>
+    <tr>
+        <td>Id for the Location</td>
+        <td>@Model.ID</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Country)</td>
+        <td>@Html.DisplayFor(m => m.Country)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Zip_Code)</td>
+        <td>@Html.DisplayFor(m => m.Zip_Code)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Street)</td>
+        <td>@Html.DisplayFor(m => m.Street)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.House_Number)</td>
+        <td>@Html.DisplayFor(m => m.House_Number)</td>
+    </tr>
+</table>
+
+

@@ -66,14 +66,14 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>Sale.</returns>
-        Sale GetSaleById(decimal id);
+        Sales GetSaleById(decimal id);
 
         /// <summary>
         /// Get user by id.
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>user.</returns>
-        User GetUserById(decimal id);
+        Users GetUserById(decimal id);
 
         /// <summary>
         /// Get all Locations.
@@ -85,13 +85,13 @@ namespace Webshop.Logic
         /// Get all sales.
         /// </summary>
         /// <returns>All sale.</returns>
-        IEnumerable<Sale> GetAllSales();
+        IEnumerable<Sales> GetAllSales();
 
         /// <summary>
         /// Get all users.
         /// </summary>
         /// <returns>All users.</returns>
-        IEnumerable<User> GetAllUsers();
+        IEnumerable<Users> GetAllUsers();
 
         /// <summary>
         /// Update Location.
@@ -107,7 +107,7 @@ namespace Webshop.Logic
         /// <param name="oldid">old id.</param>
         /// <param name="newSale"> new Sale.</param>
         /// <returns>Bool Success.</returns>
-        bool UpdateSale(decimal oldid, Sale newSale);
+        bool UpdateSale(decimal oldid, Sales newSale);
 
         /// <summary>
         /// Update user.
@@ -115,7 +115,7 @@ namespace Webshop.Logic
         /// <param name="oldid">old id.</param>
         /// <param name="newUser">new User.</param>
         /// <returns>Bool Success.</returns>
-        bool UpdateUser(decimal oldid, User newUser);
+        bool UpdateUser(decimal oldid, Users newUser);
 
         /// <summary>
         /// Delete location.
@@ -144,25 +144,25 @@ namespace Webshop.Logic
         /// Select Sales where the Seller and the Buyer In The Same Town.
         /// </summary>
         /// <returns>IQueryable sales.</returns>
-        IQueryable<Sale> SelectSalesWhereTheSellerAndTheBuyerInTheSameCountry();
+        IQueryable<Sales> SelectSalesWhereTheSellerAndTheBuyerInTheSameCountry();
 
         /// <summary>
         /// SelectUsersWhereTheyAreOnlyBuyers.
         /// </summary>
         /// <returns>IQueryable users.</returns>
-        IQueryable<User> SelectUsersWhereTheyAreOnlyBuyers();
+        IQueryable<Users> SelectUsersWhereTheyAreOnlyBuyers();
 
         /// <summary>
         /// SelectUsersWhereTheyAreOnlySellers.
         /// </summary>
         /// <returns>IQueryable users.</returns>
-        IQueryable<User> SelectUsersWhereTheyAreOnlySellers();
+        IQueryable<Users> SelectUsersWhereTheyAreOnlySellers();
 
         /// <summary>
         /// SelectUsersWhereIsNoSale.
         /// </summary>
         /// <returns>IQueryable users.</returns>
-        IQueryable<User> SelectUsersWhereIsNoSale();
+        IQueryable<Users> SelectUsersWhereIsNoSale();
 
         /// <summary>
         /// HowMuchThePeopleOfThisCitySpentAvg.

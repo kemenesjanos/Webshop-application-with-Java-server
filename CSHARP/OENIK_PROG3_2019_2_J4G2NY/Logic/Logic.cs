@@ -143,7 +143,7 @@ namespace Webshop.Logic
         /// Get all sales.
         /// </summary>
         /// <returns>IEnumerable sales.</returns>
-        public IEnumerable<Sale> GetAllSales()
+        public IEnumerable<Sales> GetAllSales()
         {
             return this.repoHelper.SaleRepository.GetAll();
         }
@@ -152,7 +152,7 @@ namespace Webshop.Logic
         /// Get all Users.
         /// </summary>
         /// <returns>IEnumerable users.</returns>
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<Users> GetAllUsers()
         {
             return this.repoHelper.UserRepository.GetAll();
         }
@@ -172,7 +172,7 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>Sale.</returns>
-        public Sale GetSaleById(decimal id)
+        public Sales GetSaleById(decimal id)
         {
             return this.repoHelper.SaleRepository.GetByID(id);
         }
@@ -182,7 +182,7 @@ namespace Webshop.Logic
         /// </summary>
         /// <param name="id">id.</param>
         /// <returns>User.</returns>
-        public User GetUserById(decimal id)
+        public Users GetUserById(decimal id)
         {
             return this.repoHelper.UserRepository.GetByID(id);
         }
@@ -196,7 +196,7 @@ namespace Webshop.Logic
         {
             if (this.GetAllLocations().Select(s => s.Country).Contains(countryName))
             {
-                return (int)this.GetAllSales().Where(w => w.User1.Loc.Country == countryName).Select(s => s.Price).Average();
+                return (int)this.GetAllSales().Where(w => w.Users1.Loc.Country == countryName).Select(s => s.Price).Average();
             }
             else
             {
@@ -251,7 +251,7 @@ namespace Webshop.Logic
             if (this.repoHelper.SaleRepository.GetByID(id) == null && shipping_Cost >= 0 && price >= 0 &&
                 this.repoHelper.UserRepository.GetByID(sellerId) != null && this.repoHelper.UserRepository.GetByID(buyerId) != null && "ruházat,elektronika,háztartási,élelmiszer,mezőgazdasági,papír - írószer,játék,gépjármű,egyéb".Split(',').Contains(category))
             {
-                Sale s = new Sale()
+                Sales s = new Sales()
                 {
                     ID = id,
                     Transaction_Date = transaction_Date,
@@ -287,7 +287,7 @@ namespace Webshop.Logic
             if (this.repoHelper.UserRepository.GetByID(id) == null && phone_Number > 999999999 && this.repoHelper.LocRepository.GetByID(locId) != null)
             {
                 DBHandler.Instance.Dispose();
-                User u = new User()
+                Users u = new Users()
                 {
                     ID = id,
                     FullName = fullName,
@@ -312,16 +312,16 @@ namespace Webshop.Logic
         /// Select Sales Where The Seller And The Buyer In The Same Country.
         /// </summary>
         /// <returns>The sales.</returns>
-        public IQueryable<Sale> SelectSalesWhereTheSellerAndTheBuyerInTheSameCountry()
+        public IQueryable<Sales> SelectSalesWhereTheSellerAndTheBuyerInTheSameCountry()
         {
-            return this.repoHelper.SaleRepository.GetAll().Where(x => x.User.Loc.Country == x.User1.Loc.Country).AsQueryable();
+            return this.repoHelper.SaleRepository.GetAll().Where(x => x.Users.Loc.Country == x.Users1.Loc.Country).AsQueryable();
         }
 
         /// <summary>
         /// Select Users Where Is No Sale.
         /// </summary>
         /// <returns>the users.</returns>
-        public IQueryable<User> SelectUsersWhereIsNoSale()
+        public IQueryable<Users> SelectUsersWhereIsNoSale()
         {
             return this.repoHelper.UserRepository.GetAll().Where(x => !this.repoHelper.SaleRepository.GetAll().Select(c => c.Seller_ID).Contains(x.ID) &&
             !this.repoHelper.SaleRepository.GetAll().Select(c => c.Buyer_ID).Contains(x.ID)).AsQueryable();
@@ -331,7 +331,7 @@ namespace Webshop.Logic
         /// Select Users Where They Are Only Buyers.
         /// </summary>
         /// <returns>The users.</returns>
-        public IQueryable<User> SelectUsersWhereTheyAreOnlyBuyers()
+        public IQueryable<Users> SelectUsersWhereTheyAreOnlyBuyers()
         {
             return this.repoHelper.UserRepository.GetAll().Where(x => !this.repoHelper.SaleRepository.GetAll().Select(c => c.Seller_ID).Contains(x.ID) &&
             this.repoHelper.SaleRepository.GetAll().Select(c => c.Buyer_ID).Contains(x.ID)).AsQueryable();
@@ -341,7 +341,7 @@ namespace Webshop.Logic
         /// Select Users Where They Are Only Sellers.
         /// </summary>
         /// <returns>The users.</returns>
-        public IQueryable<User> SelectUsersWhereTheyAreOnlySellers()
+        public IQueryable<Users> SelectUsersWhereTheyAreOnlySellers()
         {
             return this.repoHelper.UserRepository.GetAll().Where(x => this.repoHelper.SaleRepository.GetAll().Select(c => c.Seller_ID).Contains(x.ID) &&
             !this.repoHelper.SaleRepository.GetAll().Select(c => c.Buyer_ID).Contains(x.ID)).AsQueryable();
@@ -373,7 +373,7 @@ namespace Webshop.Logic
         /// <param name="oldid">old id.</param>
         /// <param name="newSale">new sale.</param>
         /// <returns>Bool success.</returns>
-        public bool UpdateSale(decimal oldid, Sale newSale)
+        public bool UpdateSale(decimal oldid, Sales newSale)
         {
             if (this.repoHelper.SaleRepository.GetByID(oldid) != null && this.repoHelper.SaleRepository.GetByID(newSale.ID) == null && newSale.Shipping_Cost >= 0 && newSale.Price >= 0 &&
                 this.repoHelper.UserRepository.GetByID((decimal)newSale.Seller_ID) != null && this.repoHelper.UserRepository.GetByID((decimal)newSale.Buyer_ID) != null && "ruházat,elektronika,háztartási,élelmiszer,mezőgazdasági,papír - írószer,játék,gépjármű,egyéb".Split(',').Contains(newSale.Category))
@@ -394,7 +394,7 @@ namespace Webshop.Logic
         /// <param name="oldid">old id.</param>
         /// <param name="newUser">new user.</param>
         /// <returns>bool success.</returns>
-        public bool UpdateUser(decimal oldid, User newUser)
+        public bool UpdateUser(decimal oldid, Users newUser)
         {
             if (this.repoHelper.UserRepository.GetByID(oldid) != null && this.repoHelper.UserRepository.GetByID(newUser.ID) == null && newUser.Phone_Number > 999999999 && this.repoHelper.LocRepository.GetByID((decimal)newUser.Location_ID) != null)
             {
