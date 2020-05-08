@@ -25,13 +25,13 @@ namespace Webshop.Logic.Tests
         public void Test_GetAll()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockRepoLoc.Setup(x => x.GetAll()).Returns(new List<Loc>()
@@ -41,25 +41,25 @@ namespace Webshop.Logic.Tests
                     new Loc() { ID = 3, Country = "CC", Street = "cc", House_Number = 3, Zip_Code = 3333 },
             });
 
-            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sale>()
+            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sales>()
             {
-                new Sale() { Product_Name = "AA", ID = 1, Price = 2000, Buyer_ID = 1, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 1000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 3, Category = "egyéb", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 1, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "AA", ID = 1, Price = 2000, Buyer_ID = 1, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 1000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 3, Category = "egyéb", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 1, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
             });
 
-            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<User>()
+            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<Users>()
                 {
-                new User() { Birth_Date = DateTime.Parse("1999.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2000.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("1999.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2000.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
                 });
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);
 
             mockLogic = new Logic(mockrepoHelper);
 
-            IEnumerable<Sale> testsales = mockLogic.GetAllSales();
+            IEnumerable<Sales> testsales = mockLogic.GetAllSales();
 
             Assert.That(testsales.Count() == 3);
         }
@@ -71,13 +71,13 @@ namespace Webshop.Logic.Tests
         public void Test_Insert()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);
@@ -104,13 +104,13 @@ namespace Webshop.Logic.Tests
         public void Test_GetByiD()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);
@@ -129,13 +129,13 @@ namespace Webshop.Logic.Tests
         public void Test_Delete()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);
@@ -154,13 +154,13 @@ namespace Webshop.Logic.Tests
         public void Test_Update()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);
@@ -179,13 +179,13 @@ namespace Webshop.Logic.Tests
         public void Test_SelectSalesWhereTheSellerAndTheBuyerInTheSameCountry()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockRepoLoc.Setup(x => x.GetAll()).Returns(new List<Loc>()
@@ -195,25 +195,25 @@ namespace Webshop.Logic.Tests
                     new Loc() { ID = 3, Country = "CC", Street = "cc", House_Number = 3, Zip_Code = 3333 },
             });
 
-            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sale>()
+            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sales>()
             {
-                new Sale() { Product_Name = "AA", ID = 1, Price = 2000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 1000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 3, Category = "egyéb", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "AA", ID = 1, Price = 2000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 1000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 3, Category = "egyéb", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
             });
 
-            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<User>()
+            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<Users>()
                 {
-                new User() { Birth_Date = DateTime.Parse("1999.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2000.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("1999.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2000.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
                 });
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);
 
             mockLogic = new Logic(mockrepoHelper);
 
-            List<User> mlist = mockLogic.SelectUsersWhereIsNoSale().ToList();
+            List<Users> mlist = mockLogic.SelectUsersWhereIsNoSale().ToList();
 
             Assert.That(mlist.Count() == 1);
             Assert.That(mlist[0].FullName == "AA");
@@ -226,13 +226,13 @@ namespace Webshop.Logic.Tests
         public void Test_SelectUsersWhereTheyAreOnlyBuyers()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockRepoLoc.Setup(x => x.GetAll()).Returns(new List<Loc>()
@@ -242,25 +242,25 @@ namespace Webshop.Logic.Tests
                     new Loc() { ID = 3, Country = "CC", Street = "cc", House_Number = 3, Zip_Code = 3333 },
             });
 
-            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sale>()
+            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sales>()
             {
-                new Sale() { Product_Name = "AA", ID = 1, Price = 2000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 1000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 1, Category = "egyéb", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "AA", ID = 1, Price = 2000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 1000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 1, Category = "egyéb", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
             });
 
-            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<User>()
+            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<Users>()
                 {
-                new User() { Birth_Date = DateTime.Parse("1999.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2000.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("1999.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2000.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
                 });
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);
 
             mockLogic = new Logic(mockrepoHelper);
 
-            List<User> mlist = mockLogic.SelectUsersWhereTheyAreOnlyBuyers().ToList();
+            List<Users> mlist = mockLogic.SelectUsersWhereTheyAreOnlyBuyers().ToList();
 
             Assert.That(mlist.Count() == 1);
             Assert.That(mlist[0].ID == 3);
@@ -273,13 +273,13 @@ namespace Webshop.Logic.Tests
         public void Test_SelectUsersWhereTheyAreOnlySellers()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockRepoLoc.Setup(x => x.GetAll()).Returns(new List<Loc>()
@@ -289,25 +289,25 @@ namespace Webshop.Logic.Tests
                     new Loc() { ID = 3, Country = "CC", Street = "cc", House_Number = 3, Zip_Code = 3333 },
             });
 
-            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sale>()
+            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sales>()
             {
-                new Sale() { Product_Name = "AA", ID = 1, Price = 2000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 1000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 1, Category = "egyéb", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "AA", ID = 1, Price = 2000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 1000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 1, Category = "egyéb", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
             });
 
-            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<User>()
+            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<Users>()
                 {
-                new User() { Birth_Date = DateTime.Parse("1999.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2000.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("1999.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2000.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
                 });
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);
 
             mockLogic = new Logic(mockrepoHelper);
 
-            List<User> mlist = mockLogic.SelectUsersWhereTheyAreOnlySellers().ToList();
+            List<Users> mlist = mockLogic.SelectUsersWhereTheyAreOnlySellers().ToList();
 
             Assert.That(mlist.Count() == 1);
             Assert.That(mlist[0].ID == 1);
@@ -320,13 +320,13 @@ namespace Webshop.Logic.Tests
         public void Test_WhichCategoryPeopleInThisAgeGroupSpentTheMost()
         {
             RepositoryHelper mockrepoHelper;
-            Mock<IRepository<User>> mockRepoUsers;
-            Mock<IRepository<Sale>> mockRepoSales;
+            Mock<IRepository<Users>> mockRepoUsers;
+            Mock<IRepository<Sales>> mockRepoSales;
             Mock<IRepository<Loc>> mockRepoLoc;
             Logic mockLogic;
 
-            mockRepoUsers = new Mock<IRepository<User>>();
-            mockRepoSales = new Mock<IRepository<Sale>>();
+            mockRepoUsers = new Mock<IRepository<Users>>();
+            mockRepoSales = new Mock<IRepository<Sales>>();
             mockRepoLoc = new Mock<IRepository<Loc>>();
 
             mockRepoLoc.Setup(x => x.GetAll()).Returns(new List<Loc>()
@@ -336,18 +336,18 @@ namespace Webshop.Logic.Tests
                     new Loc() { ID = 3, Country = "CC", Street = "cc", House_Number = 3, Zip_Code = 3333 },
             });
 
-            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sale>()
+            mockRepoSales.Setup(x => x.GetAll()).Returns(new List<Sales>()
             {
-                new Sale() { Product_Name = "AA", ID = 1, Price = 3000, Buyer_ID = 3, Seller_ID = 2, Category = "papír-írószer", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 1, Category = "papír-írószer", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
-                new Sale() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "AA", ID = 1, Price = 3000, Buyer_ID = 3, Seller_ID = 2, Category = "papír-írószer", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "BB", ID = 2, Price = 3000, Buyer_ID = 2, Seller_ID = 1, Category = "papír-írószer", Shipping_Cost = 2000, Transaction_Date = DateTime.Parse("2015.01.01") },
+                new Sales() { Product_Name = "CC", ID = 3, Price = 4000, Buyer_ID = 3, Seller_ID = 2, Category = "egyéb", Shipping_Cost = 3000, Transaction_Date = DateTime.Parse("2015.01.01") },
             });
 
-            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<User>()
+            mockRepoUsers.Setup(x => x.GetAll()).Returns(new List<Users>()
                 {
-                new User() { Birth_Date = DateTime.Parse("1995.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
-                new User() { Birth_Date = DateTime.Parse("1996.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
-                new User() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("1995.06.14"), ID = 1, Email = "AAgmail", FullName = "AA", Location_ID = 1, Phone_Number = 1111111111, Registration_Date = DateTime.Parse("2010.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("1996.01.01"), ID = 2, Email = "BBgmail", FullName = "BB", Location_ID = 2, Phone_Number = 2222222222, Registration_Date = DateTime.Parse("2018.01.01") },
+                new Users() { Birth_Date = DateTime.Parse("2001.01.01"), ID = 3, Email = "CCgmail", FullName = "CC", Location_ID = 3, Phone_Number = 3333333333, Registration_Date = DateTime.Parse("2019.01.01") },
                 });
 
             mockrepoHelper = new RepositoryHelper(mockRepoLoc.Object, mockRepoSales.Object, mockRepoUsers.Object);

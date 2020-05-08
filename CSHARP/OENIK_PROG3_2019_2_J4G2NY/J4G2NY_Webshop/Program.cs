@@ -52,8 +52,8 @@ namespace Program
                             case "l":
                                 if (t == "u")
                                 {
-                                    List<User> list = logic.GetAllUsers().ToList();
-                                    foreach (User item in list)
+                                    List<Users> list = logic.GetAllUsers().ToList();
+                                    foreach (Users item in list)
                                     {
                                         Console.WriteLine(item.FullName);
                                     }
@@ -62,11 +62,10 @@ namespace Program
                                 }
                                 else if (t == "s")
                                 {
-                                    List<Sale> list = logic.GetAllSales().ToList();
-                                    foreach (Sale item in list)
+                                    List<Sales> list = logic.GetAllSales().ToList();
+                                    foreach (Sales item in list)
                                     {
                                         Console.WriteLine(item.Product_Name);
-                                        
                                     }
 
                                     DBHandler.Instance.Dispose();
@@ -354,7 +353,7 @@ namespace Program
                                         decimal locid;
                                         bool a5 = decimal.TryParse(Console.ReadLine(), out locid);
 
-                                        User u = new User() { ID = id, FullName = fullname, Email = email, Phone_Number = phone, Birth_Date = date, Registration_Date = date2, Location_ID = locid };
+                                        Users u = new Users() { ID = id, FullName = fullname, Email = email, Phone_Number = phone, Birth_Date = date, Registration_Date = date2, Location_ID = locid };
 
                                         er = logic.UpdateUser(mid, u);
 
@@ -409,7 +408,7 @@ namespace Program
                                         decimal bid;
                                         bool a6 = decimal.TryParse(Console.ReadLine(), out bid);
 
-                                        Sale s = new Sale() { ID = id, Transaction_Date = tdate, Product_Name = prodname, Price = price, Category = cat, Shipping_Cost = shc, Seller_ID = sid, Buyer_ID = bid };
+                                        Sales s = new Sales() { ID = id, Transaction_Date = tdate, Product_Name = prodname, Price = price, Category = cat, Shipping_Cost = shc, Seller_ID = sid, Buyer_ID = bid };
 
                                         er = logic.UpdateSale(mid, s);
 
