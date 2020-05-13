@@ -34,7 +34,7 @@ namespace Webshop.Wpf
             bool success = false;
             if (location != null)
             {
-                string json = client.GetStringAsync(url + "del/" + location.ID).Result;
+                string json = client.GetStringAsync(url + "del/" + (int)location.ID).Result;
                 JObject obj = JObject.Parse(json);
                 success = (bool)obj["OperationResult"];
             }
@@ -47,11 +47,12 @@ namespace Webshop.Wpf
             string myUrl = isEditing ? url + "mod" : url + "add";
 
             Dictionary<string, string> postData = new Dictionary<string, string>();
-            if (isEditing) postData.Add(nameof(LocationVM.ID), location.ID.ToString());
+            if (isEditing) postData.Add(nameof(LocationVM.ID), ((int)location.ID).ToString());
+            //postData.Add(nameof(LocationVM.ID), ((int)location.ID).ToString());
             postData.Add(nameof(LocationVM.Country), location.Country);
             postData.Add(nameof(LocationVM.Street), location.Street);
-            postData.Add(nameof(LocationVM.Zip_Code), location.Zip_Code.ToString());
-            postData.Add(nameof(LocationVM.House_Number), location.House_Number.ToString());
+            postData.Add(nameof(LocationVM.Zip_Code), ((int)location.Zip_Code).ToString());
+            postData.Add(nameof(LocationVM.House_Number), ((int)location.House_Number).ToString());
 
             string json = client.PostAsync(myUrl, new FormUrlEncodedContent(postData))
                 .Result.Content.ReadAsStringAsync().Result;

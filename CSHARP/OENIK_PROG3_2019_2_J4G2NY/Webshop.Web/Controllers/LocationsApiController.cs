@@ -63,7 +63,7 @@ namespace Webshop.Web.Controllers
                 ID = location.ID,
                 Street = location.Street,
                 Zip_Code = location.Zip_Code,
-                House_Number = 20
+                House_Number = location.House_Number
             });
             return new ApiResult() { OperationResult = success };
         }
