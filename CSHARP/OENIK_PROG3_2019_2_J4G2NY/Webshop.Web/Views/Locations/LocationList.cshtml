@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Webshop.Web.Models.Location>
 
+@{
+    ViewBag.Title = "LocationsList";
+}
+
 <h2>List of locations</h2>
 
 @if (Model.Count() == 0)
@@ -8,7 +12,7 @@
 }
 else
 {
-    <table>
+    <table border="1">
         <tr>
             <th>@Html.DisplayNameFor(m => m.First().Street)</th>
             <th>@Html.DisplayNameFor(m => m.First().House_Number)</th>
@@ -20,7 +24,7 @@ else
         {
             <tr>
                 <td>@Html.DisplayFor(m => item.Street)</td>
-                <td>@Html.DisplayFor(m => item.House_Number)</td>
+                <td>@Html.DisplayFor(m => item.House_Number.ToString())</td>
                 <td>@Html.ActionLink("[SHOW]", "Details", new { id = item.ID })</td>
                 <td>@Html.ActionLink("[DEL]", "Remove", new { id = item.ID })</td>
                 <td>@Html.ActionLink("[EDIT]", "Edit", new { id = item.ID })</td>
